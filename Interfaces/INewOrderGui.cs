@@ -27,6 +27,8 @@ namespace OrderMgt
         String Mobile { set; }
         String Registered { set; }
 
+        List<Tuple<String, String, String>> SelectedBuildingOptions();
+
         void ClearBuildingOptions();
         void AddBuildingOption(String optionId, String optionName, String optionPrice);
 
