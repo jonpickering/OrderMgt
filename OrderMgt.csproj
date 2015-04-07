@@ -82,10 +82,17 @@
     <Compile Include="Forms\OrdersForm.Designer.cs">
       <DependentUpon>OrdersForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\UpdateOrderForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\UpdateOrderForm.Designer.cs">
+      <DependentUpon>UpdateOrderForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Interfaces\IBuildingType.cs" />
     <Compile Include="Interfaces\INewOrderGui.cs" />
     <Compile Include="Interfaces\IOrder.cs" />
     <Compile Include="Interfaces\IOrderGui.cs" />
+    <Compile Include="Interfaces\IUpdateOrderGui.cs" />
     <Compile Include="Presenters\CustomerPresenter.cs" />
     <Compile Include="Forms\CustomerSearchForm.cs">
       <SubType>Form</SubType>
@@ -108,6 +115,7 @@
     <Compile Include="Interfaces\ICustomerGui.cs" />
     <Compile Include="Presenters\NewOrderPresenter.cs" />
     <Compile Include="Presenters\OrderPresenter.cs" />
+    <Compile Include="Presenters\UpdateOrderPresenter.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Forms\BuildingOptionsSelectForm.resx">
@@ -130,6 +138,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\OrdersForm.resx">
       <DependentUpon>OrdersForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\UpdateOrderForm.resx">
+      <DependentUpon>UpdateOrderForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

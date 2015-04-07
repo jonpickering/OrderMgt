@@ -40,6 +40,7 @@
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.btnUpdateOrder = new System.Windows.Forms.ToolStripButton();
             this.toolStrip1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -51,6 +52,7 @@
             this.btnNewOrder,
             this.btnCustomers,
             this.btnOrders,
+            this.btnUpdateOrder,
             this.btnUpdateFactory,
             this.btnDelivery});
             this.toolStrip1.Location = new System.Drawing.Point(0, 24);
@@ -148,6 +150,18 @@
             this.exitToolStripMenuItem.Text = "Exit";
             this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
             // 
+            // btnUpdateOrder
+            // 
+            this.btnUpdateOrder.Image = ((System.Drawing.Image)(resources.GetObject("btnUpdateOrder.Image")));
+            this.btnUpdateOrder.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.btnUpdateOrder.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.btnUpdateOrder.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btnUpdateOrder.Name = "btnUpdateOrder";
+            this.btnUpdateOrder.Size = new System.Drawing.Size(82, 43);
+            this.btnUpdateOrder.Text = "Update Order";
+            this.btnUpdateOrder.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.btnUpdateOrder.Click += new System.EventHandler(this.btnUpdateOrder_Click);
+            // 
             // frmDialogue
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -181,6 +195,7 @@
         private System.Windows.Forms.ToolStripMenuItem fileToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem exitToolStripMenuItem;
         private System.Windows.Forms.ToolStripButton btnNewOrder;
+        private System.Windows.Forms.ToolStripButton btnUpdateOrder;
 
     }
 }

@@ -1,0 +1,16 @@
+C:\U\oodProject\OrderMgt\bin\Debug\OrderMgt.exe.config
+C:\U\oodProject\OrderMgt\obj\x86\Debug\OrderMgt.BuildingOptionsSelectForm.resources
+C:\U\oodProject\OrderMgt\obj\x86\Debug\OrderMgt.CustomerSearchForm.resources
+C:\U\oodProject\OrderMgt\obj\x86\Debug\OrderMgt.frmDialogue.resources
+C:\U\oodProject\OrderMgt\obj\x86\Debug\OrderMgt.CustomersForm.resources
+C:\U\oodProject\OrderMgt\obj\x86\Debug\OrderMgt.NewOrderForm.resources
+C:\U\oodProject\OrderMgt\obj\x86\Debug\OrderMgt.OrderSearchForm.resources
+C:\U\oodProject\OrderMgt\obj\x86\Debug\OrderMgt.OrdersForm.resources
+C:\U\oodProject\OrderMgt\obj\x86\Debug\OrderMgt.csproj.GenerateResource.Cache
+C:\U\oodProject\OrderMgt\bin\Debug\OrderMgt.exe
+C:\U\oodProject\OrderMgt\bin\Debug\OrderMgt.pdb
+C:\U\oodProject\OrderMgt\obj\x86\Debug\OrderMgt.Properties.Resources.resources
+C:\U\oodProject\OrderMgt\obj\x86\Debug\OrderMgt.exe
+C:\U\oodProject\OrderMgt\obj\x86\Debug\OrderMgt.pdb
+C:\U\oodProject\OrderMgt\obj\x86\Debug\OrderMgt.csprojResolveAssemblyReference.cache
+C:\U\oodProject\OrderMgt\obj\x86\Debug\OrderMgt.UpdateOrderForm.resources

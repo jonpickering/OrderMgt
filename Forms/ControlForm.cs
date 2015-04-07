@@ -58,5 +58,12 @@ namespace OrderMgt
             FrameBoston.RegisterBuildingType();
 
         }
+
+        private void btnUpdateOrder_Click(object sender, EventArgs e)
+        {
+            UpdateOrderForm screen = new UpdateOrderForm();
+            UpdateOrderPresenter presenter = new UpdateOrderPresenter(screen);
+            screen.ShowDialog();
+        }
     }
 }

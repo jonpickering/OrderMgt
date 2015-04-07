@@ -15,6 +15,14 @@ namespace OrderMgt
         private Decimal _framePrice;
         private DateTime _created;
         private IBuildingType _building;
+        private String _status;
+
+        private DateTime _foundationReady;
+        private DateTime _estimatedFab;
+        private DateTime _assemblyDate;
+        private DateTime _contractSigned;
+        private DateTime _planningGranted;
+        private DateTime _planningRejected;
 
         public Order(IBuildingType buildingType)
         {
@@ -107,6 +115,66 @@ namespace OrderMgt
             }
         }
 
+        public String Status
+        {
+            get
+            { return _status; }
+            set
+            { _status = value; }
+        }
+        public DateTime PlanningGranted
+        {
+            get
+            { return _planningGranted; }
+            set
+            { _planningGranted = value; }
+        }
+
+        public DateTime PlanningRejected
+        {
+            get
+            { return _planningRejected; }
+            set
+            { _planningRejected = value; }
+        }
+
+        public DateTime FoundationReady
+        {
+            get
+            { return _foundationReady; }
+            set
+            { _foundationReady = value; }
+        }
+
+        public DateTime EstimatedFab
+        {
+            get
+            { return _estimatedFab; }
+            set
+            { _estimatedFab = value; }
+        }
+
+        public String OrderId
+        {
+            get
+            { return _orderId; }
+        }
+
+        public DateTime AssemblyDate
+        {
+            get
+            { return _assemblyDate; }
+            set
+            { _assemblyDate = value; }
+        }
+
+        public DateTime ContractSigned
+        {
+            get
+            { return _contractSigned; }
+            set
+            { _contractSigned = value; }
+        }       
 
         private void Initialise()
         {
