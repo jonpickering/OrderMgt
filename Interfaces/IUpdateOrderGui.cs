@@ -9,7 +9,8 @@ namespace OrderMgt
     {
         //Order summary
         String OrderId { set; get; }
-        String OrderStatus { set; }
+        //String OrderStatus { set; }
+        OrderStatus OrderStatus { set; }
         
         //Planning Phase
         Boolean PlacedPaymentRecieved { set; get; }

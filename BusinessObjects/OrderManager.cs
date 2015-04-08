@@ -23,33 +23,67 @@ namespace OrderMgt
             }
         }
 
-        public void ManageOrderUpdate(Order o, OrderMemento om)
+        public OrderStatus ManageOrderUpdate(Order o)
         {
+            switch (o.Status)
+            {
+                case OrderStatus.Planning:
+                    if(this.CheckPlanningComplete(o))
+                    {
+                        //Do any actions like fire off an invoice for the full payment
+                        return OrderStatus.Contract;
+                    }
+                    return OrderStatus.Contract;
+                    break;
+                case OrderStatus.Contract:
+                    if (this.CheckContractComplete(o))
+                    {
+                        
+                        //Maybe need the sceduler or oerder object to do something with this now.
+                        return OrderStatus.Scheduled;
+                    }
+                    break;
+                case OrderStatus.Scheduled:
+                    if (this.CheckContractComplete(o))
+                    {
 
-            if (om.ContractSigned != o.ContractSigned)
-            { 
-            
+                        //Maybe need the sceduler or oerder object to do something with this now.
+                        return OrderStatus.Contract;
+                    }
+                    break;
+                default:
+                    // You cannot "fall through" any switch section, including
+                    // the last one. 
+                    break;
+               
             }
+                return o.Status;
         }
 
-        private Boolean PlacedStatusComplete(Order o, OrderMemento om)
+        private Boolean CheckPlanningComplete(Order o)
         {
             //Instialise status flag
-            Boolean complete = false;
-            if (o.Status != "Placed" && o.Status != "Unsubmitted")
-            {
-                complete = true;
-                return complete;
-            }
-            else 
-            {
-                if (o.PlanningGranted == DateTime.MinValue)
-                {
-
-                }
+            Boolean planningComplete = false;
             
+            if (o.PlanningGranted != null)
+            {
+               planningComplete = true;
+               return planningComplete;    
             }
-            return complete;
+            return planningComplete;
+        }
+
+        private Boolean CheckContractComplete(Order o)
+        {
+            //Instialise status flag
+            Boolean contractComplete = false;
+
+            if (o.ContractSigned != null)
+            {
+                contractComplete = true;
+                return contractComplete;
+            }
+            return contractComplete;
         }
     
     }

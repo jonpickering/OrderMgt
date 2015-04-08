@@ -29,11 +29,11 @@ namespace OrderMgt
             MessageBox.Show(message);
         }
                 
-        public String OrderStatus 
+        public OrderStatus OrderStatus 
         {
             set
             {
-                lblStatus.Text = value;
+                lblStatus.Text = value.ToString();
             }
         }
         

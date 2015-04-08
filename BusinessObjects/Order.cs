@@ -15,7 +15,9 @@ namespace OrderMgt
         private Decimal _framePrice;
         private DateTime _created;
         private IBuildingType _building;
-        private String _status;
+        
+        //private String _status;
+        private OrderStatus _status;
 
         private Nullable<DateTime> _foundationReady;
         private Nullable<DateTime> _estimatedFab;
@@ -115,13 +117,16 @@ namespace OrderMgt
             }
         }
 
-        public String Status
+        public OrderStatus Status
         {
             get
             { return _status; }
             set
-            { _status = value; }
+            {
+              _status = value;
+            }
         }
+
         public Nullable<DateTime> PlanningGranted
         {
             get
@@ -186,8 +191,8 @@ namespace OrderMgt
                 _buildingType = ds.Tables[0].Rows[0]["BuildingType"].ToString();
                 _framePrice = (Decimal)ds.Tables[0].Rows[0]["FramePrice"];
                 _created = (DateTime)ds.Tables[0].Rows[0]["Created"];
-                //_status = (OrderStatus)Enum.Parse(typeof(OrderStatus), ds.Tables[0].Rows[0]["Status"].ToString());
-                _status = ds.Tables[0].Rows[0]["Status"].ToString();
+                _status = (OrderStatus)Enum.Parse(typeof(OrderStatus), ds.Tables[0].Rows[0]["Status"].ToString());
+                //_status = ds.Tables[0].Rows[0]["Status"].ToString();
 
                 if (string.IsNullOrEmpty(ds.Tables[0].Rows[0]["PlanningRejection"].ToString()))
                 {
@@ -244,6 +249,11 @@ namespace OrderMgt
             }
         }
 
+        public void CheckStatus()
+        {
+            this.Status = OrderManager.Instance.ManageOrderUpdate(this); 
+        }
+          
         public OrderMemento SaveOrderMemento()
         {
             return new OrderMemento(this);

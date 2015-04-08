@@ -36,8 +36,18 @@ namespace OrderMgt
             _order.RestoreMemento(OrderCaretaker.Instance.OrderMemento);
             this.RefreshScreen();
         }
-        
 
+
+        public void UpdateOrder()
+        {
+            _order.CheckStatus();
+            //this should just call a method on the model not actually have the buisness logic here
+            //save_ordermodel to db or something like that and then use an order manager object to workout what has changed and 
+            //fire off an actions that the , maybe stick a message box on update saying sccess and any resulting actions
+            RefreshScreen();
+        }
+
+        //Check box input logic below
         public void planningRejectedChanged()
         {
             if (_screen.PlanningRejected == true)
@@ -76,12 +86,7 @@ namespace OrderMgt
             }
             RefreshScreen();
         }
-        public void UpdateOrder()
-        {
-            //this should just call a method on the model not actually have the buisness logic here
-            //save_ordermodel to db or something like that and then use an order manager object to workout what has changed and 
-            //fire off an actions that the , maybe stick a message box on update saying sccess and any resulting actions
-        }
+
 
         private void RefreshScreen()
         { 

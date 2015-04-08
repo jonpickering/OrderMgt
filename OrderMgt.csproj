@@ -61,6 +61,7 @@
     <Compile Include="BusinessObjects\Buildings\FrameExcellsior.cs" />
     <Compile Include="DataAccessObjects\OrderGateway.cs" />
     <Compile Include="Enumerations\BuildingType.cs" />
+    <Compile Include="Enumerations\OrderStatus.cs" />
     <Compile Include="Forms\BuildingOptionsSelectForm.cs">
       <SubType>Form</SubType>
     </Compile>
