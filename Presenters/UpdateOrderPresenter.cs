@@ -22,10 +22,16 @@ namespace OrderMgt
         public void txtOrderNumber_TextChanged()
         {
             _order = new Order(_screen.OrderId);
-
+            OrderCaretaker.Instance.OrderMemento = _order.SaveOrderMemento();
             RefreshScreen();
         }
 
+        public void undoChanges()
+        {
+            _order.RestoreMemento(OrderCaretaker.Instance.OrderMemento);
+            RefreshScreen();
+        }
+        
         public void planningRejectedChanged()
         {
             if (_screen.PlanningRejected == true)

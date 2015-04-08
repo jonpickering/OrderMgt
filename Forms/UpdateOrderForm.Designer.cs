@@ -55,6 +55,7 @@
             this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
             this.btnUpdate = new System.Windows.Forms.Button();
             this.btnCancel = new System.Windows.Forms.Button();
+            this.btnUndo = new System.Windows.Forms.Button();
             this.grpOrders.SuspendLayout();
             this.grpSummary.SuspendLayout();
             this.grpPlanning.SuspendLayout();
@@ -326,11 +327,22 @@
             this.btnCancel.Text = "Cancel";
             this.btnCancel.UseVisualStyleBackColor = true;
             // 
-            // UpdateOrderStatusForm
+            // btnUndo
+            // 
+            this.btnUndo.Location = new System.Drawing.Point(375, 490);
+            this.btnUndo.Name = "btnUndo";
+            this.btnUndo.Size = new System.Drawing.Size(75, 23);
+            this.btnUndo.TabIndex = 16;
+            this.btnUndo.Text = "Undo";
+            this.btnUndo.UseVisualStyleBackColor = true;
+            this.btnUndo.Click += new System.EventHandler(this.btnUndo_Click);
+            // 
+            // UpdateOrderForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(717, 517);
+            this.Controls.Add(this.btnUndo);
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.btnUpdate);
             this.Controls.Add(this.groupBox3);
@@ -339,7 +351,7 @@
             this.Controls.Add(this.grpSummary);
             this.Controls.Add(this.grpOrders);
             this.Controls.Add(this.picSidePanel);
-            this.Name = "UpdateOrderStatusForm";
+            this.Name = "UpdateOrderForm";
             this.Text = "UpdateOrderStatusForm";
             this.grpOrders.ResumeLayout(false);
             this.grpOrders.PerformLayout();
@@ -385,6 +397,7 @@
         private System.Windows.Forms.DateTimePicker dateTimePicker1;
         private System.Windows.Forms.Button btnUpdate;
         private System.Windows.Forms.Button btnCancel;
+        private System.Windows.Forms.Button btnUndo;
 
     }
 }

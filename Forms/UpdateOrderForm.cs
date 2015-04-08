@@ -191,6 +191,11 @@ namespace OrderMgt
             _presenter.contractSignedChanged();
         }
 
+        private void btnUndo_Click(object sender, EventArgs e)
+        {
+            _presenter.undoChanges();
+        }
+
 
 
     }

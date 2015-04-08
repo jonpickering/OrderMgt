@@ -243,5 +243,22 @@ namespace OrderMgt
                 }
             }
         }
-    }
+
+        public OrderMemento SaveOrderMemento()
+        {
+            return new OrderMemento(this);
+        }
+ 
+        // Restores memento
+        public void RestoreMemento(OrderMemento memento)
+        {
+         
+            this.PlanningGranted = memento.PlanningGranted;
+            this.PlanningRejected = memento.PlanningRejected;
+            this.FoundationReady = memento.FoundationReady;
+            this.AssemblyDate = memento.AssemblyDate;
+            this.EstimatedFab = memento.EstimatedFab;
+            this.ContractSigned = memento.ContractSigned;
+        }
+  }
 }
