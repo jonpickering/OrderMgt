@@ -19,19 +19,25 @@ namespace OrderMgt
             _screen.EnableControls(false); // Disables order list until user selects a customer or clicks 'New'
         }
 
-        public void txtOrderNumber_TextChanged()
+        //On search of create 
+        public void getOrderToUpdate()
         {
             _order = new Order(_screen.OrderId);
             OrderCaretaker.Instance.OrderMemento = _order.SaveOrderMemento();
-            RefreshScreen();
+            this.RefreshScreen();
+            //intially restore the memento as the intial setting is firing events on the check boxes 
+            //which in turn is seeting the values to the timedate now a intial reset fixes this.
+            this.undoChanges();
         }
 
+        //Undo any changes made on the form by restoring the memento and updating the form.
         public void undoChanges()
         {
             _order.RestoreMemento(OrderCaretaker.Instance.OrderMemento);
-            RefreshScreen();
+            this.RefreshScreen();
         }
         
+
         public void planningRejectedChanged()
         {
             if (_screen.PlanningRejected == true)
@@ -40,7 +46,7 @@ namespace OrderMgt
             }
             else
             {
-                _order.PlanningRejected = DateTime.MinValue;
+                _order.PlanningRejected = null;
             }
             RefreshScreen();
         }
@@ -53,7 +59,7 @@ namespace OrderMgt
             }
             else
             {
-                _order.PlanningGranted = DateTime.MinValue;
+                _order.PlanningGranted = null;
             }
             RefreshScreen();
         }
@@ -66,11 +72,10 @@ namespace OrderMgt
             }
             else
             {
-                _order.ContractSigned = DateTime.MinValue;
+                _order.ContractSigned = null;
             }
             RefreshScreen();
         }
-
         public void UpdateOrder()
         {
             //this should just call a method on the model not actually have the buisness logic here
@@ -84,7 +89,7 @@ namespace OrderMgt
             _screen.OrderStatus = _order.Status;
                
             //check for presence of a date and set relvant boxes
-            if (_order.PlanningGranted == DateTime.MinValue)
+            if (_order.PlanningGranted == null)
             {
                 _screen.PlanningGranted = false;
                 _screen.PlanningGrantedDate = "";
@@ -95,7 +100,7 @@ namespace OrderMgt
                 _screen.PlanningGrantedDate = _order.PlanningGranted.ToString();
             }
             
-            if (_order.PlanningRejected == DateTime.MinValue)
+            if (_order.PlanningRejected == null)
             {
                 _screen.PlanningRejected = false;
                 _screen.PlanningRejectedDate = "";
@@ -106,7 +111,7 @@ namespace OrderMgt
                 _screen.PlanningRejectedDate = _order.PlanningRejected.ToString();
             }
 
-            if (_order.ContractSigned == DateTime.MinValue)
+            if (_order.ContractSigned == null)
             {
                 _screen.ContractSigned = false;
                 _screen.ContractSignedDate = "";

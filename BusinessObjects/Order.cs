@@ -6,7 +6,7 @@ using System.Data;
 
 namespace OrderMgt
 {
-    class Order
+    public class Order
     {
         private Boolean _isNewOrder;
         private String _orderId;
@@ -17,12 +17,12 @@ namespace OrderMgt
         private IBuildingType _building;
         private String _status;
 
-        private DateTime _foundationReady;
-        private DateTime _estimatedFab;
-        private DateTime _assemblyDate;
-        private DateTime _contractSigned;
-        private DateTime _planningGranted;
-        private DateTime _planningRejected;
+        private Nullable<DateTime> _foundationReady;
+        private Nullable<DateTime> _estimatedFab;
+        private Nullable<DateTime> _assemblyDate;
+        private Nullable<DateTime> _contractSigned;
+        private Nullable<DateTime> _planningGranted;
+        private Nullable<DateTime> _planningRejected;
 
         public Order(IBuildingType buildingType)
         {
@@ -122,7 +122,7 @@ namespace OrderMgt
             set
             { _status = value; }
         }
-        public DateTime PlanningGranted
+        public Nullable<DateTime> PlanningGranted
         {
             get
             { return _planningGranted; }
@@ -130,7 +130,7 @@ namespace OrderMgt
             { _planningGranted = value; }
         }
 
-        public DateTime PlanningRejected
+        public Nullable<DateTime> PlanningRejected
         {
             get
             { return _planningRejected; }
@@ -138,7 +138,7 @@ namespace OrderMgt
             { _planningRejected = value; }
         }
 
-        public DateTime FoundationReady
+        public Nullable<DateTime> FoundationReady
         {
             get
             { return _foundationReady; }
@@ -146,7 +146,7 @@ namespace OrderMgt
             { _foundationReady = value; }
         }
 
-        public DateTime EstimatedFab
+        public Nullable<DateTime> EstimatedFab
         {
             get
             { return _estimatedFab; }
@@ -160,7 +160,7 @@ namespace OrderMgt
             { return _orderId; }
         }
 
-        public DateTime AssemblyDate
+        public Nullable<DateTime> AssemblyDate
         {
             get
             { return _assemblyDate; }
@@ -168,7 +168,7 @@ namespace OrderMgt
             { _assemblyDate = value; }
         }
 
-        public DateTime ContractSigned
+        public Nullable<DateTime> ContractSigned
         {
             get
             { return _contractSigned; }
@@ -191,33 +191,33 @@ namespace OrderMgt
 
                 if (string.IsNullOrEmpty(ds.Tables[0].Rows[0]["PlanningRejection"].ToString()))
                 {
-                    _planningRejected = DateTime.MinValue;
+                    _planningRejected = null;
                 }
                 else
                 {
-                    _planningRejected = (DateTime)ds.Tables[0].Rows[0]["PlanningRejection"];
+                    _planningRejected = (Nullable<DateTime>)ds.Tables[0].Rows[0]["PlanningRejection"];
                 }
 
                 if (string.IsNullOrEmpty(ds.Tables[0].Rows[0]["PlanningGranted"].ToString()))
                 {
-                    _planningGranted = DateTime.MinValue;
+                    _planningGranted = null;
                 }
                 else
                 {
-                    _planningGranted = (DateTime)ds.Tables[0].Rows[0]["PlanningGranted"];
+                    _planningGranted = (Nullable<DateTime>)ds.Tables[0].Rows[0]["PlanningGranted"];
                 }
 
                 if (string.IsNullOrEmpty(ds.Tables[0].Rows[0]["ContractSigned"].ToString()))
                 {
-                    _contractSigned = DateTime.MinValue;
+                    _contractSigned = null;
                 }
                 else
                 {
-                    _contractSigned = (DateTime)ds.Tables[0].Rows[0]["ContractSigned"];
+                    _contractSigned = (Nullable<DateTime>)ds.Tables[0].Rows[0]["ContractSigned"];
                 }
                 if (string.IsNullOrEmpty(ds.Tables[0].Rows[0]["Estimate"].ToString()))
                 {
-                    _estimatedFab = DateTime.MinValue;
+                    _estimatedFab = null;
                 }
                 else
                 {
@@ -226,20 +226,20 @@ namespace OrderMgt
 
                 if (string.IsNullOrEmpty(ds.Tables[0].Rows[0]["AssemblyDate"].ToString()))
                 {
-                    _assemblyDate = DateTime.MinValue;
+                    _assemblyDate = null;
                 }
                 else
                 {
-                    _assemblyDate = (DateTime)ds.Tables[0].Rows[0]["AssemblyDate"];
+                    _assemblyDate = (Nullable<DateTime>)ds.Tables[0].Rows[0]["AssemblyDate"];
                 }
 
                 if (string.IsNullOrEmpty(ds.Tables[0].Rows[0]["FoundationReady"].ToString()))
                 {
-                    _foundationReady = DateTime.MinValue;
+                    _foundationReady = null;
                 }
                 else
                 {
-                    _foundationReady = (DateTime)ds.Tables[0].Rows[0]["FoundationReady"];
+                    _foundationReady = (Nullable<DateTime>)ds.Tables[0].Rows[0]["FoundationReady"];
                 }
             }
         }

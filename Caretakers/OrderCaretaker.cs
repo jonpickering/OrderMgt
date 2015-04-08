@@ -5,7 +5,7 @@ using System.Text;
 
 namespace OrderMgt
 {
-    class OrderCaretaker
+    public class OrderCaretaker
     {
         private static OrderCaretaker instance; 
         private OrderMemento _memento;

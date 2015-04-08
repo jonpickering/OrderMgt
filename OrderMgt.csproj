@@ -53,6 +53,7 @@
     <Compile Include="BusinessObjects\Buildings\FrameOrchard.cs" />
     <Compile Include="BusinessObjects\Customer.cs" />
     <Compile Include="BusinessObjects\Order.cs" />
+    <Compile Include="BusinessObjects\OrderManager.cs" />
     <Compile Include="BusinessObjects\OrderMemento.cs" />
     <Compile Include="Caretakers\OrderCaretaker.cs" />
     <Compile Include="DataAccessObjects\BuildingGateway.cs" />

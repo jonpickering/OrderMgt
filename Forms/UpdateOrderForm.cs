@@ -168,7 +168,7 @@ namespace OrderMgt
         {
             // The Order search Button invokes as simple modal search dialogue
             // This enables the user to find a customer when they don't know the CustomerID
-            _presenter.txtOrderNumber_TextChanged();
+            _presenter.getOrderToUpdate();
         }
 
         private void btnUpdate_Click(object sender, EventArgs e)
@@ -195,8 +195,6 @@ namespace OrderMgt
         {
             _presenter.undoChanges();
         }
-
-
 
     }
 }
