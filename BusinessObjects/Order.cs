@@ -174,7 +174,7 @@ namespace OrderMgt
             { return _contractSigned; }
             set
             { _contractSigned = value; }
-        }       
+        }
 
         private void Initialise()
         {
@@ -183,9 +183,64 @@ namespace OrderMgt
             if (ds.Tables[0].Rows.Count > 0)
             {
                 _customerId = ds.Tables[0].Rows[0]["CustomerId"].ToString();
-                _buildingType =  ds.Tables[0].Rows[0]["BuildingType"].ToString();
+                _buildingType = ds.Tables[0].Rows[0]["BuildingType"].ToString();
                 _framePrice = (Decimal)ds.Tables[0].Rows[0]["FramePrice"];
                 _created = (DateTime)ds.Tables[0].Rows[0]["Created"];
+                //_status = (OrderStatus)Enum.Parse(typeof(OrderStatus), ds.Tables[0].Rows[0]["Status"].ToString());
+                _status = ds.Tables[0].Rows[0]["Status"].ToString();
+
+                if (string.IsNullOrEmpty(ds.Tables[0].Rows[0]["PlanningRejection"].ToString()))
+                {
+                    _planningRejected = DateTime.MinValue;
+                }
+                else
+                {
+                    _planningRejected = (DateTime)ds.Tables[0].Rows[0]["PlanningRejection"];
+                }
+
+                if (string.IsNullOrEmpty(ds.Tables[0].Rows[0]["PlanningGranted"].ToString()))
+                {
+                    _planningGranted = DateTime.MinValue;
+                }
+                else
+                {
+                    _planningGranted = (DateTime)ds.Tables[0].Rows[0]["PlanningGranted"];
+                }
+
+                if (string.IsNullOrEmpty(ds.Tables[0].Rows[0]["ContractSigned"].ToString()))
+                {
+                    _contractSigned = DateTime.MinValue;
+                }
+                else
+                {
+                    _contractSigned = (DateTime)ds.Tables[0].Rows[0]["ContractSigned"];
+                }
+                if (string.IsNullOrEmpty(ds.Tables[0].Rows[0]["Estimate"].ToString()))
+                {
+                    _estimatedFab = DateTime.MinValue;
+                }
+                else
+                {
+                    _estimatedFab = (DateTime)ds.Tables[0].Rows[0]["Estimate"];
+                }
+
+                if (string.IsNullOrEmpty(ds.Tables[0].Rows[0]["AssemblyDate"].ToString()))
+                {
+                    _assemblyDate = DateTime.MinValue;
+                }
+                else
+                {
+                    _assemblyDate = (DateTime)ds.Tables[0].Rows[0]["AssemblyDate"];
+                }
+
+                if (string.IsNullOrEmpty(ds.Tables[0].Rows[0]["FoundationReady"].ToString()))
+                {
+                    _foundationReady = DateTime.MinValue;
+                }
+                else
+                {
+                    _foundationReady = (DateTime)ds.Tables[0].Rows[0]["FoundationReady"];
+                }
             }
         }
     }
