@@ -26,8 +26,8 @@ namespace OrderMgt.Properties {
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
-        [global::System.Configuration.DefaultSettingValueAttribute("Provider=Microsoft.ACE.OLEDB.12.0;Data Source=C:\\U\\OodProject\\OrderMgt\\DataBase\\O" +
-            "rderMgt.accdb")]
+        [global::System.Configuration.DefaultSettingValueAttribute("Provider=Microsoft.ACE.OLEDB.12.0;Data Source=C:\\CM0721\\OrderMgt\\DataBase\\OrderMg" +
+            "t.accdb")]
         public string ordersdb {
             get {
                 return ((string)(this["ordersdb"]));
