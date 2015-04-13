@@ -37,7 +37,6 @@ namespace OrderMgt
             this.RefreshScreen();
         }
 
-
         public void UpdateOrder()
         {
             _order.CheckStatus();
@@ -66,10 +65,13 @@ namespace OrderMgt
             if (_screen.PlanningGranted == true)
             {
                 _order.PlanningGranted = DateTime.Now;
+                //lock the PlanningFailed CheckBox
+                _screen.EnablePlanningRejected(false);
             }
             else
             {
                 _order.PlanningGranted = null;
+                _screen.EnablePlanningRejected(true);
             }
             RefreshScreen();
         }

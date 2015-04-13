@@ -5,7 +5,7 @@ using System.Text;
 
 namespace OrderMgt
 {
-    public class OrderManager
+    public class OrderManager : IOrderManager
     {
         private static OrderManager instance; 
 
@@ -27,13 +27,31 @@ namespace OrderMgt
         {
             switch (o.Status)
             {
+                case OrderStatus.Unsubmitted:
+
+                    if (this.CheckPlanningComplete(o))
+                    {
+                        //Generate Planning Pack
+                        //Generate Contract
+                        //Generate £1000 Planning Pack Invoice
+                        return OrderStatus.Planning;
+                    }
+                    break;
                 case OrderStatus.Planning:
+                
                     if(this.CheckPlanningComplete(o))
                     {
-                        //Do any actions like fire off an invoice for the full payment
+                        //Generate Full Cost Invoice for customer
                         return OrderStatus.Contract;
                     }
-                    return OrderStatus.Contract;
+                    break;
+                case OrderStatus.PlanningRejected:
+
+                    if (this.CheckPlanningComplete(o))
+                    {
+                        //Generate Full Cost Invoice for customer
+                        return OrderStatus.Contract;
+                    }
                     break;
                 case OrderStatus.Contract:
                     if (this.CheckContractComplete(o))
@@ -65,6 +83,7 @@ namespace OrderMgt
             //Instialise status flag
             Boolean planningComplete = false;
             
+            //this needs to also include payments how ever we deal with that??
             if (o.PlanningGranted != null)
             {
                planningComplete = true;

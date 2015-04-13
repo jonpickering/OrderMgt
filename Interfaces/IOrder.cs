@@ -5,7 +5,7 @@ using System.Text;
 
 namespace OrderMgt
 {
-    interface IOrder
+    public interface IOrder
     {
         
         String CustomerId { set; get; }

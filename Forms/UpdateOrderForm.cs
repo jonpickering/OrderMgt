@@ -148,11 +148,11 @@ namespace OrderMgt
         {
             set
             {
-                chkFullPayment.Checked = value;
+                chkOrderInvoice.Checked = value;
             }
             get
             {
-                return chkFullPayment.Checked;
+                return chkOrderInvoice.Checked;
             }
         }
         
@@ -161,6 +161,14 @@ namespace OrderMgt
             // This simple function allows the 'Presenter' to enable.disable data entry text boxes
             // stopping the user from entering data before they've made it clear what they are doing
             //chkPlanning.Enabled = false;
+            //grpPlanning.Enabled = false; 
+        }
+
+        public void EnablePlanningRejected(Boolean enabled)
+        {
+            // This simple function allows the 'Presenter' to enable.disable data entry text boxes
+            // stopping the user from entering data before they've made it clear what they are doing
+            chkRejected.Enabled = enabled;
             //grpPlanning.Enabled = false; 
         }
 

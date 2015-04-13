@@ -29,6 +29,8 @@ namespace OrderMgt
         void Close();
         void EnableControls(Boolean enabled);
         void Register(UpdateOrderPresenter presenter);
-       
+
+        void EnablePlanningRejected(Boolean enabled);
+
     }
 }

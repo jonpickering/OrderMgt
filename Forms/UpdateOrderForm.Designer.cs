@@ -45,17 +45,23 @@
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.dtpFoundationDate = new System.Windows.Forms.DateTimePicker();
             this.lblFoundationDate = new System.Windows.Forms.Label();
-            this.chkFullPayment = new System.Windows.Forms.CheckBox();
-            this.lblFullPayment = new System.Windows.Forms.Label();
+            this.chkOrderInvoice = new System.Windows.Forms.CheckBox();
+            this.lblOrderInvoice = new System.Windows.Forms.Label();
             this.chkContract = new System.Windows.Forms.CheckBox();
-            this.lblContract = new System.Windows.Forms.Label();
             this.picSidePanel = new System.Windows.Forms.PictureBox();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
-            this.label1 = new System.Windows.Forms.Label();
+            this.lblAssemblyDate = new System.Windows.Forms.Label();
             this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
             this.btnUpdate = new System.Windows.Forms.Button();
             this.btnCancel = new System.Windows.Forms.Button();
             this.btnUndo = new System.Windows.Forms.Button();
+            this.lblContract = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.btnDelay = new System.Windows.Forms.Button();
+            this.lblDelayCost = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.lblDelayInvoice = new System.Windows.Forms.Label();
+            this.chkDelayInvoice = new System.Windows.Forms.CheckBox();
             this.grpOrders.SuspendLayout();
             this.grpSummary.SuspendLayout();
             this.grpPlanning.SuspendLayout();
@@ -94,7 +100,7 @@
             // 
             // btnOrderSearch
             // 
-            this.btnOrderSearch.Location = new System.Drawing.Point(316, 27);
+            this.btnOrderSearch.Location = new System.Drawing.Point(300, 27);
             this.btnOrderSearch.Name = "btnOrderSearch";
             this.btnOrderSearch.Size = new System.Drawing.Size(75, 23);
             this.btnOrderSearch.TabIndex = 0;
@@ -104,6 +110,7 @@
             // 
             // grpSummary
             // 
+            this.grpSummary.Controls.Add(this.label2);
             this.grpSummary.Controls.Add(this.lblStatus);
             this.grpSummary.Controls.Add(this.lblOrderStatus);
             this.grpSummary.Location = new System.Drawing.Point(159, 85);
@@ -124,7 +131,7 @@
             // lblOrderStatus
             // 
             this.lblOrderStatus.AutoSize = true;
-            this.lblOrderStatus.Location = new System.Drawing.Point(41, 31);
+            this.lblOrderStatus.Location = new System.Drawing.Point(38, 31);
             this.lblOrderStatus.Name = "lblOrderStatus";
             this.lblOrderStatus.Size = new System.Drawing.Size(69, 13);
             this.lblOrderStatus.TabIndex = 0;
@@ -140,7 +147,7 @@
             this.grpPlanning.Controls.Add(this.lblPlanningGranted);
             this.grpPlanning.Location = new System.Drawing.Point(159, 234);
             this.grpPlanning.Name = "grpPlanning";
-            this.grpPlanning.Size = new System.Drawing.Size(546, 79);
+            this.grpPlanning.Size = new System.Drawing.Size(546, 98);
             this.grpPlanning.TabIndex = 11;
             this.grpPlanning.TabStop = false;
             this.grpPlanning.Text = "Planning";
@@ -148,7 +155,7 @@
             // chkRejected
             // 
             this.chkRejected.AutoSize = true;
-            this.chkRejected.Location = new System.Drawing.Point(127, 53);
+            this.chkRejected.Location = new System.Drawing.Point(127, 58);
             this.chkRejected.Name = "chkRejected";
             this.chkRejected.Size = new System.Drawing.Size(15, 14);
             this.chkRejected.TabIndex = 5;
@@ -158,7 +165,7 @@
             // lblPlanningRejected
             // 
             this.lblPlanningRejected.AutoSize = true;
-            this.lblPlanningRejected.Location = new System.Drawing.Point(16, 54);
+            this.lblPlanningRejected.Location = new System.Drawing.Point(16, 59);
             this.lblPlanningRejected.Name = "lblPlanningRejected";
             this.lblPlanningRejected.Size = new System.Drawing.Size(100, 13);
             this.lblPlanningRejected.TabIndex = 4;
@@ -167,7 +174,7 @@
             // chkPlanningPay
             // 
             this.chkPlanningPay.AutoSize = true;
-            this.chkPlanningPay.Location = new System.Drawing.Point(403, 30);
+            this.chkPlanningPay.Location = new System.Drawing.Point(414, 30);
             this.chkPlanningPay.Name = "chkPlanningPay";
             this.chkPlanningPay.Size = new System.Drawing.Size(15, 14);
             this.chkPlanningPay.TabIndex = 3;
@@ -188,9 +195,9 @@
             this.lblPlanningPay.AutoSize = true;
             this.lblPlanningPay.Location = new System.Drawing.Point(293, 30);
             this.lblPlanningPay.Name = "lblPlanningPay";
-            this.lblPlanningPay.Size = new System.Drawing.Size(103, 13);
+            this.lblPlanningPay.Size = new System.Drawing.Size(116, 13);
             this.lblPlanningPay.TabIndex = 1;
-            this.lblPlanningPay.Text = "Payment Recieved: ";
+            this.lblPlanningPay.Text = "Planning Invoice Paid: ";
             // 
             // lblPlanningGranted
             // 
@@ -203,15 +210,20 @@
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.chkDelayInvoice);
+            this.groupBox2.Controls.Add(this.lblDelayInvoice);
+            this.groupBox2.Controls.Add(this.label3);
+            this.groupBox2.Controls.Add(this.lblDelayCost);
+            this.groupBox2.Controls.Add(this.btnDelay);
             this.groupBox2.Controls.Add(this.dtpFoundationDate);
             this.groupBox2.Controls.Add(this.lblFoundationDate);
-            this.groupBox2.Controls.Add(this.chkFullPayment);
-            this.groupBox2.Controls.Add(this.lblFullPayment);
+            this.groupBox2.Controls.Add(this.chkOrderInvoice);
+            this.groupBox2.Controls.Add(this.lblOrderInvoice);
             this.groupBox2.Controls.Add(this.chkContract);
             this.groupBox2.Controls.Add(this.lblContract);
-            this.groupBox2.Location = new System.Drawing.Point(159, 319);
+            this.groupBox2.Location = new System.Drawing.Point(159, 338);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(546, 88);
+            this.groupBox2.Size = new System.Drawing.Size(546, 134);
             this.groupBox2.TabIndex = 12;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Contract and Payment";
@@ -232,23 +244,23 @@
             this.lblFoundationDate.TabIndex = 8;
             this.lblFoundationDate.Text = "Foundation Date: ";
             // 
-            // chkFullPayment
+            // chkOrderInvoice
             // 
-            this.chkFullPayment.AutoSize = true;
-            this.chkFullPayment.Location = new System.Drawing.Point(406, 26);
-            this.chkFullPayment.Name = "chkFullPayment";
-            this.chkFullPayment.Size = new System.Drawing.Size(15, 14);
-            this.chkFullPayment.TabIndex = 7;
-            this.chkFullPayment.UseVisualStyleBackColor = true;
+            this.chkOrderInvoice.AutoSize = true;
+            this.chkOrderInvoice.Location = new System.Drawing.Point(406, 26);
+            this.chkOrderInvoice.Name = "chkOrderInvoice";
+            this.chkOrderInvoice.Size = new System.Drawing.Size(15, 14);
+            this.chkOrderInvoice.TabIndex = 7;
+            this.chkOrderInvoice.UseVisualStyleBackColor = true;
             // 
-            // lblFullPayment
+            // lblOrderInvoice
             // 
-            this.lblFullPayment.AutoSize = true;
-            this.lblFullPayment.Location = new System.Drawing.Point(297, 26);
-            this.lblFullPayment.Name = "lblFullPayment";
-            this.lblFullPayment.Size = new System.Drawing.Size(103, 13);
-            this.lblFullPayment.TabIndex = 6;
-            this.lblFullPayment.Text = "Payment Recieved: ";
+            this.lblOrderInvoice.AutoSize = true;
+            this.lblOrderInvoice.Location = new System.Drawing.Point(297, 26);
+            this.lblOrderInvoice.Name = "lblOrderInvoice";
+            this.lblOrderInvoice.Size = new System.Drawing.Size(101, 13);
+            this.lblOrderInvoice.TabIndex = 6;
+            this.lblOrderInvoice.Text = "Order Invoice Paid: ";
             // 
             // chkContract
             // 
@@ -260,15 +272,6 @@
             this.chkContract.UseVisualStyleBackColor = true;
             this.chkContract.CheckedChanged += new System.EventHandler(this.chkContract_CheckedChanged);
             // 
-            // lblContract
-            // 
-            this.lblContract.AutoSize = true;
-            this.lblContract.Location = new System.Drawing.Point(16, 26);
-            this.lblContract.Name = "lblContract";
-            this.lblContract.Size = new System.Drawing.Size(89, 13);
-            this.lblContract.TabIndex = 4;
-            this.lblContract.Text = "Contract Signed: ";
-            // 
             // picSidePanel
             // 
             this.picSidePanel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
@@ -276,30 +279,30 @@
             this.picSidePanel.BackColor = System.Drawing.Color.White;
             this.picSidePanel.Location = new System.Drawing.Point(0, 0);
             this.picSidePanel.Name = "picSidePanel";
-            this.picSidePanel.Size = new System.Drawing.Size(143, 520);
+            this.picSidePanel.Size = new System.Drawing.Size(143, 630);
             this.picSidePanel.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.picSidePanel.TabIndex = 8;
             this.picSidePanel.TabStop = false;
             // 
             // groupBox3
             // 
-            this.groupBox3.Controls.Add(this.label1);
+            this.groupBox3.Controls.Add(this.lblAssemblyDate);
             this.groupBox3.Controls.Add(this.dateTimePicker1);
-            this.groupBox3.Location = new System.Drawing.Point(159, 425);
+            this.groupBox3.Location = new System.Drawing.Point(159, 488);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(546, 58);
+            this.groupBox3.Size = new System.Drawing.Size(546, 72);
             this.groupBox3.TabIndex = 13;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Assembly";
             // 
-            // label1
+            // lblAssemblyDate
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(16, 32);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(35, 13);
-            this.label1.TabIndex = 1;
-            this.label1.Text = "label1";
+            this.lblAssemblyDate.AutoSize = true;
+            this.lblAssemblyDate.Location = new System.Drawing.Point(16, 32);
+            this.lblAssemblyDate.Name = "lblAssemblyDate";
+            this.lblAssemblyDate.Size = new System.Drawing.Size(80, 13);
+            this.lblAssemblyDate.TabIndex = 1;
+            this.lblAssemblyDate.Text = "Assembly Date:";
             // 
             // dateTimePicker1
             // 
@@ -310,7 +313,7 @@
             // 
             // btnUpdate
             // 
-            this.btnUpdate.Location = new System.Drawing.Point(604, 490);
+            this.btnUpdate.Location = new System.Drawing.Point(643, 595);
             this.btnUpdate.Name = "btnUpdate";
             this.btnUpdate.Size = new System.Drawing.Size(75, 23);
             this.btnUpdate.TabIndex = 14;
@@ -320,7 +323,7 @@
             // 
             // btnCancel
             // 
-            this.btnCancel.Location = new System.Drawing.Point(484, 490);
+            this.btnCancel.Location = new System.Drawing.Point(159, 595);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(75, 23);
             this.btnCancel.TabIndex = 15;
@@ -329,7 +332,7 @@
             // 
             // btnUndo
             // 
-            this.btnUndo.Location = new System.Drawing.Point(375, 490);
+            this.btnUndo.Location = new System.Drawing.Point(505, 595);
             this.btnUndo.Name = "btnUndo";
             this.btnUndo.Size = new System.Drawing.Size(75, 23);
             this.btnUndo.TabIndex = 16;
@@ -337,11 +340,73 @@
             this.btnUndo.UseVisualStyleBackColor = true;
             this.btnUndo.Click += new System.EventHandler(this.btnUndo_Click);
             // 
+            // lblContract
+            // 
+            this.lblContract.AutoSize = true;
+            this.lblContract.Location = new System.Drawing.Point(16, 26);
+            this.lblContract.Name = "lblContract";
+            this.lblContract.Size = new System.Drawing.Size(89, 13);
+            this.lblContract.TabIndex = 4;
+            this.lblContract.Text = "Contract Signed: ";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(88, 72);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(0, 13);
+            this.label2.TabIndex = 2;
+            // 
+            // btnDelay
+            // 
+            this.btnDelay.Location = new System.Drawing.Point(365, 56);
+            this.btnDelay.Name = "btnDelay";
+            this.btnDelay.Size = new System.Drawing.Size(75, 23);
+            this.btnDelay.TabIndex = 10;
+            this.btnDelay.Text = "Delay";
+            this.btnDelay.UseVisualStyleBackColor = true;
+            // 
+            // lblDelayCost
+            // 
+            this.lblDelayCost.AutoSize = true;
+            this.lblDelayCost.Location = new System.Drawing.Point(19, 95);
+            this.lblDelayCost.Name = "lblDelayCost";
+            this.lblDelayCost.Size = new System.Drawing.Size(64, 13);
+            this.lblDelayCost.TabIndex = 11;
+            this.lblDelayCost.Text = "Delay Cost: ";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(81, 95);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(48, 13);
+            this.label3.TabIndex = 12;
+            this.label3.Text = "Cost in £";
+            // 
+            // lblDelayInvoice
+            // 
+            this.lblDelayInvoice.AutoSize = true;
+            this.lblDelayInvoice.Location = new System.Drawing.Point(297, 95);
+            this.lblDelayInvoice.Name = "lblDelayInvoice";
+            this.lblDelayInvoice.Size = new System.Drawing.Size(99, 13);
+            this.lblDelayInvoice.TabIndex = 13;
+            this.lblDelayInvoice.Text = "Delay Invoice Paid:";
+            // 
+            // chkDelayInvoice
+            // 
+            this.chkDelayInvoice.AutoSize = true;
+            this.chkDelayInvoice.Location = new System.Drawing.Point(406, 95);
+            this.chkDelayInvoice.Name = "chkDelayInvoice";
+            this.chkDelayInvoice.Size = new System.Drawing.Size(15, 14);
+            this.chkDelayInvoice.TabIndex = 14;
+            this.chkDelayInvoice.UseVisualStyleBackColor = true;
+            // 
             // UpdateOrderForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(717, 517);
+            this.ClientSize = new System.Drawing.Size(728, 627);
             this.Controls.Add(this.btnUndo);
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.btnUpdate);
@@ -385,19 +450,25 @@
         private System.Windows.Forms.CheckBox chkPlanning;
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.Label lblFoundationDate;
-        private System.Windows.Forms.CheckBox chkFullPayment;
-        private System.Windows.Forms.Label lblFullPayment;
+        private System.Windows.Forms.CheckBox chkOrderInvoice;
+        private System.Windows.Forms.Label lblOrderInvoice;
         private System.Windows.Forms.CheckBox chkContract;
-        private System.Windows.Forms.Label lblContract;
         private System.Windows.Forms.GroupBox groupBox3;
         private System.Windows.Forms.CheckBox chkRejected;
         private System.Windows.Forms.Label lblPlanningRejected;
         private System.Windows.Forms.DateTimePicker dtpFoundationDate;
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label lblAssemblyDate;
         private System.Windows.Forms.DateTimePicker dateTimePicker1;
         private System.Windows.Forms.Button btnUpdate;
         private System.Windows.Forms.Button btnCancel;
         private System.Windows.Forms.Button btnUndo;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label lblContract;
+        private System.Windows.Forms.Button btnDelay;
+        private System.Windows.Forms.Label lblDelayInvoice;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label lblDelayCost;
+        private System.Windows.Forms.CheckBox chkDelayInvoice;
 
     }
 }

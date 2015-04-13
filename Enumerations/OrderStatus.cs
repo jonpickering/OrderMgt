@@ -9,8 +9,9 @@ namespace OrderMgt
     {
         Unsubmitted, //Order has yet to be submitted and house otpion can be edited
         Cancelled, //If is cancelled prior ro submission
-        Culled, //Set to culled when culed condition have been met
+        Culled, //Set to culled when culled condition have been met
         Planning, // After a order is submitted
+        PlanningRejected, //Used when planning
         Contract, //After planning is granted 
         Scheduled, // After contract is submitted and payment
         Fabrication, //While being built
