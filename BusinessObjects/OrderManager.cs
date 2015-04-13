@@ -5,7 +5,7 @@ using System.Text;
 
 namespace OrderMgt
 {
-    public class OrderManager : IOrderManager
+    public class OrderManager
     {
         private static OrderManager instance; 
 
