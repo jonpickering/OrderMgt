@@ -108,14 +108,14 @@ namespace OrderMgt
         {
             set
             {
-                if (value!="")    
-                    cboBuildingType.SelectedValue = value;
+                cboBuildingType.SelectedValue = value;
             }
             get
             {
-                return cboBuildingType.SelectedValue.ToString();
+                return cboBuildingType.SelectedItem.ToString();
             }
         }
+
         public String FramePrice
         {
             set
@@ -191,17 +191,11 @@ namespace OrderMgt
         {
             // This simple function allows the 'Presenter' to enable.disable data entry text boxes
             // stopping the user from entering data before they've made it clear what they are doing
-
-        
+      
         }
 
         private void NewOrderForm_Load(object sender, EventArgs e)
         {
-            DataSet ds = BuildingGateway.List();
-            cboBuildingType.DataSource = ds.Tables[0];
-            cboBuildingType.DisplayMember = "TypeCode";
-            cboBuildingType.ValueMember = "TypeCode";
-
         }
 
         private void btnCustomerSearch_Click(object sender, EventArgs e)
@@ -212,6 +206,11 @@ namespace OrderMgt
             CustomerSearchForm search = new CustomerSearchForm();
             search.ShowDialog();
             txtCustomerId.Text = search.SelectedCustomerId();
+        }
+
+        public void AddBuildingType(String buildingType)
+        {
+            cboBuildingType.Items.Add(buildingType);
         }
 
         private void btnNext_Click(object sender, EventArgs e)
@@ -256,14 +255,10 @@ namespace OrderMgt
             _presenter.tabWizzard_Selected(tabWizzard.SelectedTab.Name);
         }
 
-        private void cboBuildingType_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            //if (!string.IsNullOrEmpty(cboBuildingType.SelectedText))
-            //    _presenter.cboBuildingType_SelectedIndexChanged();
-        }
 
         private void cboBuildingType_SelectedValueChanged(object sender, EventArgs e)
         {
+//            if (cboBuildingType.Items.Count > 0)
             _presenter.cboBuildingType_SelectedIndexChanged();
         }
 
@@ -272,30 +267,45 @@ namespace OrderMgt
             vwBuildingOptions.Rows.Clear();
         }
 
-        public void AddBuildingOption(String optionId, String optionName, String optionPrice)
+        public void AddBuildingOption(String[] row)
         {
-            String[] row = new String[3];
-            row[0] = optionId;
-            row[1] = optionName;
-            row[2] = optionPrice;
             vwBuildingOptions.Rows.Add(row);
+        }
+
+        public String[] GetBuildingOption(int row)
+        {
+            String[] cells = new String[4];
+            cells[0] = vwBuildingOptions.Rows[row].Cells["id"].Value.ToString();
+            cells[1] = vwBuildingOptions.Rows[row].Cells["option"].Value.ToString();
+            cells[2] = vwBuildingOptions.Rows[row].Cells["price"].Value.ToString();
+            cells[3] = vwBuildingOptions.Rows[row].Cells["type"].Value.ToString();
+
+            return cells;
         }
 
         private void vwBuildingOptions_SelectionChanged(object sender, EventArgs e)
         {
-            _presenter.vwBuildingOptions_SelectionChanged();
+            _presenter.vwBuildingOptions_SelectionChanged(vwBuildingOptions.CurrentRow.Index);
         }
 
-        public List<Tuple<String, String, String>> SelectedBuildingOptions()
+        public int SelectedBuildingOptionsCount()
         {
-            List<Tuple<String, String, String>> opts = new List<Tuple<String, String, String>>();
+            return vwBuildingOptions.Rows.Count;
+        }
 
-            foreach (DataGridViewRow row in vwBuildingOptions.SelectedRows)
-            {
-                opts.Add(new Tuple<String, String, String>(row.Cells["id"].Value.ToString(), row.Cells["option"].Value.ToString(), row.Cells["price"].Value.ToString()));
-            }
+        public Boolean BuildingOptions_Selected(int row)
+        {
+            return vwBuildingOptions.Rows[row].Selected;
+        }
 
-            return opts;
+        public void SelectBuildingOption(int row, Boolean selected)
+        {
+            vwBuildingOptions.Rows[row].Selected = selected;
+        }
+
+        public void SetNextCaption(String caption)
+        {
+            btnNext.Text = caption;
         }
      }
 }

@@ -37,15 +37,15 @@ namespace OrderMgt
             }
         }
         
-        public Boolean PlacedPaymentRecieved
+        public Boolean PlanningInvoice 
         {
             set
             {
-                chkPlanningPay.Checked = value;
+                chkPlanningInvoice.Checked = value;
             }
             get
             {
-                return chkPlanningPay.Checked;
+                return chkPlanningInvoice.Checked;
             }
         }
         public Boolean PlanningGranted
@@ -100,11 +100,11 @@ namespace OrderMgt
         {
             set
             {
-                txtOrderNum.Text = value;
+                lblOrderIDTxt.Text = value;
             }
             get
             {
-                return txtOrderNum.Text;
+                return lblOrderIDTxt.Text;
             }
         }
 
@@ -132,19 +132,19 @@ namespace OrderMgt
             }
         }
         
-        public String FoundationDate 
+        public DateTime FoundationDate 
         {
             set
             {
-                dtpFoundationDate.Text = value;
+                dtpFoundationDate.Value = value;
             }
             get
             {
-                return dtpFoundationDate.Text;
+                return dtpFoundationDate.Value;
             }
         }
 
-        public Boolean FullInvoicePaymentRecieved 
+        public Boolean OrderInvoice 
         {
             set
             {
@@ -155,7 +155,54 @@ namespace OrderMgt
                 return chkOrderInvoice.Checked;
             }
         }
-        
+
+        public Boolean DelayInvoice
+        {
+            set
+            {
+                chkDelayInvoice.Checked = value;
+            }
+            get
+            {
+                return chkDelayInvoice.Checked;
+            }
+        }
+
+        public String PlanningInvoiceDate
+        {
+            set
+            {
+                chkPlanningInvoice.Text = value;
+            }
+            get
+            {
+                return chkPlanningInvoice.Text;
+            }
+        }
+
+        public String OrderInvoiceDate
+        {
+            set
+            {
+                chkOrderInvoice.Text = value;
+            }
+            get
+            {
+                return chkOrderInvoice.Text;
+            }
+        }
+
+        public String DelayInvoiceDate
+        {
+            set
+            {
+                chkDelayInvoice.Text = value;
+            }
+            get
+            {
+                return chkDelayInvoice.Text;
+            }
+        }
         public void EnableControls(Boolean enabled)
         {
             // This simple function allows the 'Presenter' to enable.disable data entry text boxes
@@ -171,6 +218,27 @@ namespace OrderMgt
             chkRejected.Enabled = enabled;
             //grpPlanning.Enabled = false; 
         }
+
+        public void EnablePlanningGroup(Boolean enabled)
+        {
+            grpPlanning.Enabled = enabled; 
+        }
+
+        public void EnableContractGroup(Boolean enabled)
+        {
+            grpPlanning.Enabled = enabled;
+        }
+
+        public void EnableAssemblyGroup(Boolean enabled)
+        {
+            grpAssembly.Enabled = enabled;
+        }
+
+        public void ToggleFoundationDate(Boolean enabled)
+        {
+            dtpFoundationDate.Enabled = enabled;
+        }
+
 
         private void btnOrderSearch_Click(object sender, EventArgs e)
         {
@@ -194,15 +262,39 @@ namespace OrderMgt
             _presenter.planningRejectedChanged();
         }
 
+
         private void chkContract_CheckedChanged(object sender, EventArgs e)
         {
             _presenter.contractSignedChanged();
+        }
+
+        private void chkPlanningInvoice_CheckedChanged(object sender, EventArgs e)
+        {
+            _presenter.planningInvoiceChanged();
         }
 
         private void btnUndo_Click(object sender, EventArgs e)
         {
             _presenter.undoChanges();
         }
+
+        private void btnCancel_Click(object sender, EventArgs e)
+        {
+            _presenter.close();
+        }
+
+        private void chkOrderInvoice_CheckedChanged(object sender, EventArgs e)
+        {
+            _presenter.orderInvoiceChanged();
+        }
+
+        private void dtpFoundationDate_ValueChanged(object sender, EventArgs e)
+        {
+            this.FoundationDate = dtpFoundationDate.Value;
+            _presenter.foundationDateChanged(this.FoundationDate);
+        }
+
+
 
     }
 }

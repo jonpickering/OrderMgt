@@ -46,11 +46,12 @@ namespace OrderMgt
             }
         }
 
-        public static void Insert(String name, String address, String town, String postCode, String telephone, String mobile)
+        public static String Insert(String name, String address, String town, String postCode, String telephone, String mobile)
         {
             // Insert a new customer dataset
             // There's not TRY/Catch because we want errors to be propogated up
 
+            String customerId = "";
             String sql = String.Format("INSERT INTO customers (name,address,town,postcode,tel,mob,registered) VALUES ('{0}','{1}','{2}','{3}','{4}','{5}','{6}')",
                 AppHelper.SqlSafe(name), AppHelper.SqlSafe(address), AppHelper.SqlSafe(town), AppHelper.SqlSafe(postCode), AppHelper.SqlSafe(telephone), AppHelper.SqlSafe(mobile), DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"));
 
@@ -59,8 +60,15 @@ namespace OrderMgt
                 conn.Open();
                 OleDbCommand cmd = new OleDbCommand(sql, conn);
                 cmd.ExecuteNonQuery();
+                cmd.CommandText = "SELECT @@IDENTITY";
+                OleDbDataReader dr = cmd.ExecuteReader();
+                if (dr.Read())
+                    customerId = dr[0].ToString();
+                     
                 conn.Close();
             }
+
+            return customerId;
         }
 
         public static DataSet list()

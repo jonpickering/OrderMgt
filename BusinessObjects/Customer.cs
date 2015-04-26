@@ -41,6 +41,12 @@ namespace OrderMgt
             Initialise();
         }
 
+        public String CustomerId
+        {
+            get
+            { return _customerId; }
+        }
+
         public String Name
         {
             get
@@ -121,7 +127,7 @@ namespace OrderMgt
             // Data is valid at this point so we can safely attempt to save in DB
 
             if (_isNewCustomer)
-                CustomerGateway.Insert(_name, _address, _town, _postcode, _telephone, _mobile);
+               _customerId = CustomerGateway.Insert(_name, _address, _town, _postcode, _telephone, _mobile);
             else
                 CustomerGateway.Update(_customerId, _name, _address, _town, _postcode, _telephone, _mobile);
         }

@@ -27,11 +27,16 @@ namespace OrderMgt
         String Mobile { set; }
         String Registered { set; }
 
-        List<Tuple<String, String, String>> SelectedBuildingOptions();
+        //List<Tuple<String, String, String, String>> SelectedBuildingOptions();
 
+        void AddBuildingType(String buildingType);
         void ClearBuildingOptions();
-        void AddBuildingOption(String optionId, String optionName, String optionPrice);
-
+        int SelectedBuildingOptionsCount();
+        void SelectBuildingOption(int row, Boolean selected);
+        Boolean BuildingOptions_Selected(int row);
+        void AddBuildingOption(String[] row);
+        String[] GetBuildingOption(int row);
+        void SetNextCaption(String caption);
         void ShowMessage(String message);
         void Close();
         void EnableControls(Boolean enabled);

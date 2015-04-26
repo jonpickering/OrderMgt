@@ -44,8 +44,9 @@ namespace OrderMgt
 
         private void btnNewOrder_Click(object sender, EventArgs e)
         {
+            IOrder order = new Order();
             NewOrderForm screen = new NewOrderForm();
-            NewOrderPresenter presenter = new NewOrderPresenter(screen);
+            NewOrderPresenter presenter = new NewOrderPresenter(screen, order);
             screen.ShowDialog();
         }
 
@@ -61,9 +62,15 @@ namespace OrderMgt
 
         private void btnUpdateOrder_Click(object sender, EventArgs e)
         {
-            UpdateOrderForm screen = new UpdateOrderForm();
-            UpdateOrderPresenter presenter = new UpdateOrderPresenter(screen);
+            IOrder order = new Order();
+            OrderSearchForm screen = new OrderSearchForm();
+            OrderSearchPresenter presenter = new OrderSearchPresenter(screen, order);
             screen.ShowDialog();
+        }
+
+        private void toolStrip1_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
+        {
+
         }
     }
 }

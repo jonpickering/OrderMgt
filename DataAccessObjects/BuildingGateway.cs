@@ -62,7 +62,32 @@ namespace OrderMgt
                 try
                 {
                     conn.Open();
-                    OleDbCommand cmd = new OleDbCommand(String.Format("SELECT id,optionname,optionprice FROM buildingOptions WHERE buildingtype='{0}'", buildingType), conn);
+                    OleDbCommand cmd = new OleDbCommand(String.Format("SELECT id,optionname,optionprice,optiontype FROM buildingOptions WHERE buildingtype='{0}'", buildingType), conn);
+                    OleDbDataAdapter da = new OleDbDataAdapter(cmd);
+                    da.Fill(ds);
+                }
+                catch (Exception ex)
+                {
+                }
+                finally
+                {
+                    conn.Close();
+                }
+            }
+            return ds;
+        }
+
+        public static DataSet FindOption(String optionId)
+        {
+            // Return a simple list of all customers
+
+            DataSet ds = new DataSet();
+            using (OleDbConnection conn = new OleDbConnection(Properties.Settings.Default.ordersdb.ToString()))
+            {
+                try
+                {
+                    conn.Open();
+                    OleDbCommand cmd = new OleDbCommand(String.Format("SELECT id,optionname,optionprice,optiontype FROM buildingOptions WHERE id={0}", optionId), conn);
                     OleDbDataAdapter da = new OleDbDataAdapter(cmd);
                     da.Fill(ds);
                 }

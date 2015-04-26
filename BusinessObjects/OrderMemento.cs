@@ -13,6 +13,9 @@ namespace OrderMgt
         private Nullable<DateTime> _contractSigned;
         private Nullable<DateTime> _planningGranted;
         private Nullable<DateTime> _planningRejected;
+        private Nullable<DateTime> _planningInvoice;
+        private Nullable<DateTime> _orderInvoice;
+        private Nullable<DateTime> _delayInvoice;
 
         public OrderMemento(Order order)
         {
@@ -21,7 +24,10 @@ namespace OrderMgt
             _assemblyDate = order.AssemblyDate;
             _contractSigned = order.ContractSigned;
             _planningGranted = order.PlanningGranted;
-            _planningRejected =order.PlanningRejected;      
+            _planningRejected = order.PlanningRejected;
+            _planningInvoice = order.PlanningInvoice;
+            _orderInvoice = order.OrderInvoice;
+            _delayInvoice = order.DelayInvoice;
         }
 
         public Nullable<DateTime> PlanningGranted
@@ -72,5 +78,28 @@ namespace OrderMgt
             { _contractSigned = value; }
         }
 
+        public Nullable<DateTime> PlanningInvoice
+        {
+            get
+            { return _planningInvoice; }
+            set
+            { _planningInvoice = value; }
+        }
+
+        public Nullable<DateTime> OrderInvoice
+        {
+            get
+            { return _orderInvoice; }
+            set
+            { _orderInvoice = value; }
+        }
+
+        public Nullable<DateTime> DelayInvoice
+        {
+            get
+            { return _delayInvoice; }
+            set
+            { _delayInvoice = value; }
+        }
     }
 }

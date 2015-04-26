@@ -8,7 +8,8 @@ namespace OrderMgt
 {
     class FrameBase
     {
-        protected Decimal _framePrice=0;
+        private String _name = "";
+        private Decimal _price=0;
         private int _bedrooms=0;
         private int _bathrooms=0;
         private int _receptionRooms=0;
@@ -21,28 +22,29 @@ namespace OrderMgt
         public FrameBase(String name)
         {
             DataSet ds = BuildingGateway.Find(name);
-            _framePrice = (Decimal)ds.Tables[0].Rows[0]["FramePrice"];
+
+            _name = name;
+            _price = (Decimal)ds.Tables[0].Rows[0]["FramePrice"];
             _bedrooms = (int)ds.Tables[0].Rows[0]["Bedrooms"];
             _bathrooms = (int)ds.Tables[0].Rows[0]["Bathrooms"];
             _receptionRooms = (int)ds.Tables[0].Rows[0]["Reception"];
             _area = (int)ds.Tables[0].Rows[0]["Area"];
             _constructionDays = (int)ds.Tables[0].Rows[0]["ConstructionDays"];
         }
-
-
+        
         public virtual String Name
         {
             get
             {
-                return "";
+                return _name;
             }
         }
 
-        public Decimal FramePrice
+        public Decimal Price
         {
             get
             {
-                return _framePrice;
+                return _price;
             }
         }
         public int Bedrooms

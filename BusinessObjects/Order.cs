@@ -6,17 +6,20 @@ using System.Data;
 
 namespace OrderMgt
 {
-    public class Order
+    public class Order: IOrder
     {
         private Boolean _isNewOrder;
         private String _orderId;
         private String _customerId;
         private String _buildingType;
         private Decimal _framePrice;
+        private Decimal _totalPrice;
+        private Decimal _vat;
         private DateTime _created;
-        private IBuildingType _building;
+        private IBuilding _frame;
+        private List<String> _buildingOptions = new List<string>();
         
-        //private String _status;
+        private Boolean _requiresRecalculation = false;
         private OrderStatus _status;
 
         private Nullable<DateTime> _foundationReady;
@@ -25,16 +28,25 @@ namespace OrderMgt
         private Nullable<DateTime> _contractSigned;
         private Nullable<DateTime> _planningGranted;
         private Nullable<DateTime> _planningRejected;
+        private Nullable<DateTime> _planningInvoice;
+        private Nullable<DateTime> _orderInvoice;
+        private Nullable<DateTime> _delayInvoice;
+      
 
-        public Order(IBuildingType buildingType)
+        public Order()
         {
             _isNewOrder = true;
-
-            _building = buildingType;
 
             _orderId = "new";
             _customerId = "";
             _created = DateTime.Now;
+
+            // Instantiate building for the order.
+            // The BuildingFactory will return a NULL BUILDING object if we don't specify a valid building type
+
+            _buildingType = "";
+            _frame = BuildingFactory.Instance.GetBuildingType(_buildingType);
+            //_frame = BuildingFactory.Instance.GetBuildingType("");
         }
 
         public Order(String orderId)
@@ -44,6 +56,60 @@ namespace OrderMgt
             _orderId = orderId;
 
             Initialise();
+        }
+
+        public void SetFrame(String buildingType)
+        {
+            _buildingType = buildingType;
+            _frame = BuildingFactory.Instance.GetBuildingType(_buildingType);
+            _requiresRecalculation = true;
+        }
+
+        public void ClearOptions()
+        {
+            _buildingOptions = new List<string>();
+            _requiresRecalculation = true;
+        }
+
+        public void AddOption(String optionId)
+        {
+            _buildingOptions.Add(optionId);
+            _requiresRecalculation = true;
+        }
+
+        private void Recalculate()
+        {
+            //_building = BuildingFactory.Instance.GetBuildingType(_buildingType);
+
+            List<BuildingDecorator> decoratedBuildingList = new List<BuildingDecorator>();
+
+            if (_buildingOptions.Count > 0)
+            {
+                for (int i = 0; i < _buildingOptions.Count; i++)
+                {
+                    BuildingDecorator decoratedBuilding = null;
+
+                    if (i == 0)
+                        decoratedBuilding = new BuildingOptionDecorator(_frame, _buildingOptions[i]);
+                    else
+                        decoratedBuilding = new BuildingOptionDecorator(decoratedBuildingList[i - 1], _buildingOptions[i]);
+
+                    decoratedBuildingList.Add(decoratedBuilding);
+                }
+
+                _framePrice = _frame.Price;
+                _totalPrice = decoratedBuildingList[decoratedBuildingList.Count-1].Price;
+                _vat = _totalPrice * Properties.Settings.Default.vatrate;
+            }
+            else
+            {
+                // No options selected so price, area and VAT all based on teh frame price only
+                _framePrice = _frame.Price;
+                _totalPrice = _frame.Price;
+                _vat = _totalPrice * Properties.Settings.Default.vatrate;
+            }
+
+            _requiresRecalculation = false;
         }
 
         public String CustomerId
@@ -58,14 +124,14 @@ namespace OrderMgt
         {
             get
             { 
-                return _building.Name; 
+                return _buildingType; 
             }
         }
 
         public Decimal FramePrice
         {
             get
-            { return _building.FramePrice; }
+            { return _framePrice; }
 
         }
 
@@ -73,7 +139,9 @@ namespace OrderMgt
         {
             get
             {
-                return 0;
+                if (_requiresRecalculation)
+                    Recalculate();
+                return _totalPrice - _frame.Price;
             }
         }
 
@@ -81,7 +149,9 @@ namespace OrderMgt
         {
             get
             {
-                return 0;
+                if (_requiresRecalculation)
+                    Recalculate();
+                return _totalPrice;
             }
         }
 
@@ -89,7 +159,9 @@ namespace OrderMgt
         {
             get
             {
-                return 0;
+                if (_requiresRecalculation)
+                    Recalculate();
+                return _vat;
             }
         }
 
@@ -97,7 +169,7 @@ namespace OrderMgt
         {
             get
             {
-                return _building.ReceptionRooms;
+                return _frame.ReceptionRooms;
             }
         }
 
@@ -105,7 +177,7 @@ namespace OrderMgt
         {
             get
             {
-                return _building.Bedrooms;
+                return _frame.Bedrooms;
             }
         }
 
@@ -113,7 +185,7 @@ namespace OrderMgt
         {
             get
             {
-                return _building.Bathrooms;
+                return _frame.Bathrooms;
             }
         }
 
@@ -181,6 +253,30 @@ namespace OrderMgt
             { _contractSigned = value; }
         }
 
+        public Nullable<DateTime> PlanningInvoice
+        {
+            get
+            { return _planningInvoice; }
+            set
+            { _planningInvoice = value; }
+        }
+
+        public Nullable<DateTime> OrderInvoice
+        {
+            get
+            { return _orderInvoice; }
+            set
+            { _orderInvoice = value; }
+        }
+
+        public Nullable<DateTime> DelayInvoice
+        {
+            get
+            { return _delayInvoice; }
+            set
+            { _delayInvoice = value; }
+        }
+
         private void Initialise()
         {
             DataSet ds = OrderGateway.Find(_orderId);
@@ -192,7 +288,6 @@ namespace OrderMgt
                 _framePrice = (Decimal)ds.Tables[0].Rows[0]["FramePrice"];
                 _created = (DateTime)ds.Tables[0].Rows[0]["Created"];
                 _status = (OrderStatus)Enum.Parse(typeof(OrderStatus), ds.Tables[0].Rows[0]["Status"].ToString());
-                //_status = ds.Tables[0].Rows[0]["Status"].ToString();
 
                 if (string.IsNullOrEmpty(ds.Tables[0].Rows[0]["PlanningRejection"].ToString()))
                 {
@@ -220,13 +315,13 @@ namespace OrderMgt
                 {
                     _contractSigned = (Nullable<DateTime>)ds.Tables[0].Rows[0]["ContractSigned"];
                 }
-                if (string.IsNullOrEmpty(ds.Tables[0].Rows[0]["Estimate"].ToString()))
+                if (string.IsNullOrEmpty(ds.Tables[0].Rows[0]["EstimateFabDate"].ToString()))
                 {
                     _estimatedFab = null;
                 }
                 else
                 {
-                    _estimatedFab = (DateTime)ds.Tables[0].Rows[0]["Estimate"];
+                    _estimatedFab = (DateTime)ds.Tables[0].Rows[0]["EstimateFabDate"];
                 }
 
                 if (string.IsNullOrEmpty(ds.Tables[0].Rows[0]["AssemblyDate"].ToString()))
@@ -238,20 +333,56 @@ namespace OrderMgt
                     _assemblyDate = (Nullable<DateTime>)ds.Tables[0].Rows[0]["AssemblyDate"];
                 }
 
-                if (string.IsNullOrEmpty(ds.Tables[0].Rows[0]["FoundationReady"].ToString()))
+                if (string.IsNullOrEmpty(ds.Tables[0].Rows[0]["FoundationDate"].ToString()))
                 {
                     _foundationReady = null;
                 }
                 else
                 {
-                    _foundationReady = (Nullable<DateTime>)ds.Tables[0].Rows[0]["FoundationReady"];
+                    _foundationReady = (Nullable<DateTime>)ds.Tables[0].Rows[0]["FoundationDate"];
                 }
+
+                if (string.IsNullOrEmpty(ds.Tables[0].Rows[0]["PlanningInvoice"].ToString()))
+                {
+                    _planningInvoice = null;
+                }
+                else
+                {
+                    _planningInvoice = (Nullable<DateTime>)ds.Tables[0].Rows[0]["PlanningInvoice"];
+                }
+
+                if (string.IsNullOrEmpty(ds.Tables[0].Rows[0]["OrderInvoice"].ToString()))
+                {
+                    _orderInvoice = null;
+                }
+                else
+                {
+                    _orderInvoice = (Nullable<DateTime>)ds.Tables[0].Rows[0]["OrderInvoice"];
+                }
+
+                if (string.IsNullOrEmpty(ds.Tables[0].Rows[0]["DelayInvoice"].ToString()))
+                {
+                    _delayInvoice = null;
+                }
+                else
+                {
+                    _delayInvoice = (Nullable<DateTime>)ds.Tables[0].Rows[0]["DelayInvoice"];
+                }
+
+
             }
         }
 
-        public void CheckStatus()
+        public string CheckStatus()
         {
-            this.Status = OrderManager.Instance.ManageOrderUpdate(this); 
+            OrderStatus oldStatus = this.Status;
+            this.Status = OrderManager.Instance.ManageOrderUpdate(this);
+            if (oldStatus != this.Status)
+            {
+                return "Order Status Updated: " + this.Status;
+            }
+
+            return "Order Status Not Updated";
         }
           
         public OrderMemento SaveOrderMemento()
@@ -269,6 +400,22 @@ namespace OrderMgt
             this.AssemblyDate = memento.AssemblyDate;
             this.EstimatedFab = memento.EstimatedFab;
             this.ContractSigned = memento.ContractSigned;
+            this.PlanningInvoice = memento.PlanningInvoice;
+            this.OrderInvoice = memento.OrderInvoice;
+            this.DelayInvoice = memento.DelayInvoice;
+        }
+
+        public void Save()
+        {
+            if (_isNewOrder)
+            {
+                _orderId = OrderGateway.Create(_customerId, _buildingType, _framePrice, _planningRejected, _planningGranted, _contractSigned, _estimatedFab, _assemblyDate, _foundationReady, _planningInvoice,_orderInvoice,_delayInvoice);
+                _isNewOrder = false;
+            }
+            else
+            {
+                OrderGateway.Save(this);
+            }
         }
   }
 }

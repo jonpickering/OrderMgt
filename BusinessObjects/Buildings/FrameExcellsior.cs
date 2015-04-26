@@ -6,7 +6,7 @@ using System.Data;
 
 namespace OrderMgt
 {
-    class FrameExcellsior: FrameBase, IBuildingType
+    class FrameExcellsior: FrameBase, IBuilding
     {
         private const String _name="Excellsior";
 
@@ -16,7 +16,7 @@ namespace OrderMgt
         {
         }
 
-        public IBuildingType CreateBuilding()
+        public IBuilding CreateBuilding()
         {
             return new FrameExcellsior();
         }

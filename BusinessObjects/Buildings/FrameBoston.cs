@@ -5,7 +5,7 @@ using System.Text;
 
 namespace OrderMgt
 {
-    class FrameBoston: FrameBase, IBuildingType
+    class FrameBoston: FrameBase, IBuilding
     {
         private const String _name="Boston";
 
@@ -15,7 +15,7 @@ namespace OrderMgt
         {
         }
 
-        public IBuildingType CreateBuilding()
+        public IBuilding CreateBuilding()
         {
             return new FrameBoston();
         }

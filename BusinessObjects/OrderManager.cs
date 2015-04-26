@@ -27,31 +27,13 @@ namespace OrderMgt
         {
             switch (o.Status)
             {
-                case OrderStatus.Unsubmitted:
-
-                    if (this.CheckPlanningComplete(o))
-                    {
-                        //Generate Planning Pack
-                        //Generate Contract
-                        //Generate £1000 Planning Pack Invoice
-                        return OrderStatus.Planning;
-                    }
-                    break;
                 case OrderStatus.Planning:
-                
                     if(this.CheckPlanningComplete(o))
                     {
-                        //Generate Full Cost Invoice for customer
+                        //Do any actions like fire off an invoice for the full payment
                         return OrderStatus.Contract;
                     }
-                    break;
-                case OrderStatus.PlanningRejected:
-
-                    if (this.CheckPlanningComplete(o))
-                    {
-                        //Generate Full Cost Invoice for customer
-                        return OrderStatus.Contract;
-                    }
+                    //check for planning rejected
                     break;
                 case OrderStatus.Contract:
                     if (this.CheckContractComplete(o))
@@ -83,12 +65,12 @@ namespace OrderMgt
             //Instialise status flag
             Boolean planningComplete = false;
             
-            //this needs to also include payments how ever we deal with that??
-            if (o.PlanningGranted != null)
+            if (o.PlanningGranted != null && o.PlanningInvoice != null)            
             {
                planningComplete = true;
                return planningComplete;    
             }
+
             return planningComplete;
         }
 
@@ -97,7 +79,7 @@ namespace OrderMgt
             //Instialise status flag
             Boolean contractComplete = false;
 
-            if (o.ContractSigned != null)
+            if (o.ContractSigned != null && o.OrderInvoice != null)
             {
                 contractComplete = true;
                 return contractComplete;

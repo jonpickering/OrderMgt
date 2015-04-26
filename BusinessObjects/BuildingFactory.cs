@@ -11,7 +11,7 @@ namespace OrderMgt
     public class BuildingFactory
     {
         private Hashtable BuildingMap = new Hashtable();
-        public static readonly IBuildingType NULL = new NullBuilding();
+        public static readonly IBuilding NULL = new NullBuilding();
 
         #region Singleton instanciation
         
@@ -27,22 +27,22 @@ namespace OrderMgt
         
         #endregion
 
-        public void RegisterBuilding(String buildingType, IBuildingType building)
+        public void RegisterBuilding(String buildingType, IBuilding building)
         {
             if (!BuildingMap.ContainsKey(buildingType))
                 BuildingMap[buildingType] = building;
         }
 
-        public IBuildingType GetBuildingType(String buildingType)
+        public IBuilding GetBuildingType(String buildingType)
         {
-            IBuildingType building = null; // Need to instanciate a pointer to keep compiler happy
+            IBuilding building = null; // Need to instanciate a pointer to keep compiler happy
 
             // If we have a definition for the buildingType requested by the client then create an instance
-            // of that type and reference using the IBuildingType interface
+            // of that type and reference using the IBuilding interface
 
             if (BuildingMap.ContainsKey(buildingType))
             {
-                building = (IBuildingType)BuildingMap[buildingType];
+                building = (IBuilding)BuildingMap[buildingType];
 
                 return building.CreateBuilding();
             }
@@ -52,9 +52,9 @@ namespace OrderMgt
             }
         }
 
-        private class NullBuilding : FrameBase, IBuildingType
+        private class NullBuilding : FrameBase, IBuilding
         {
-            public IBuildingType CreateBuilding()
+            public IBuilding CreateBuilding()
             {
                 return null;
             }

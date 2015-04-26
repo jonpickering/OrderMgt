@@ -82,6 +82,7 @@ namespace OrderMgt
             try
             {
                 _customer.Save();
+                _screen.CustomerId = _customer.CustomerId;
                 _screen.Close();
             }
             catch (Exception ex)

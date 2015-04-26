@@ -33,5 +33,14 @@ namespace OrderMgt.Properties {
                 return ((string)(this["ordersdb"]));
             }
         }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0.2")]
+        public decimal vatrate {
+            get {
+                return ((decimal)(this["vatrate"]));
+            }
+        }
     }
 }

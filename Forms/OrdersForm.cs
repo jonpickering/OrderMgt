@@ -164,7 +164,7 @@ namespace OrderMgt
 
             OrderSearchForm search = new OrderSearchForm();
             search.ShowDialog();
-            txtOrderId.Text = search.SelectedOrderNumber();
+         //   txtOrderId.Text = search.SelectedOrderNumber();
         }
 
         private void btnCancel_Click(object sender, EventArgs e)

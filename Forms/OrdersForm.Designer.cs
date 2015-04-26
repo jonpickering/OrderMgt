@@ -47,6 +47,10 @@
             this.btnSave = new System.Windows.Forms.Button();
             this.grpCustomer = new System.Windows.Forms.GroupBox();
             this.grpProperty = new System.Windows.Forms.GroupBox();
+            this.vwOptions = new System.Windows.Forms.DataGridView();
+            this.id = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Option = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Price = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.label10 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
@@ -63,15 +67,11 @@
             this.txtFramePrice = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
             this.picSidePanel = new System.Windows.Forms.PictureBox();
-            this.vwOptions = new System.Windows.Forms.DataGridView();
-            this.id = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Option = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Price = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.grpOrders.SuspendLayout();
             this.grpCustomer.SuspendLayout();
             this.grpProperty.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.picSidePanel)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.vwOptions)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picSidePanel)).BeginInit();
             this.SuspendLayout();
             // 
             // grpOrders
@@ -266,6 +266,50 @@
             this.grpProperty.TabStop = false;
             this.grpProperty.Text = "Building ";
             // 
+            // vwOptions
+            // 
+            this.vwOptions.AllowUserToAddRows = false;
+            this.vwOptions.AllowUserToDeleteRows = false;
+            this.vwOptions.BackgroundColor = System.Drawing.SystemColors.ControlLightLight;
+            this.vwOptions.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.vwOptions.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.None;
+            this.vwOptions.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.vwOptions.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.id,
+            this.Option,
+            this.Price});
+            this.vwOptions.Location = new System.Drawing.Point(304, 33);
+            this.vwOptions.MultiSelect = false;
+            this.vwOptions.Name = "vwOptions";
+            this.vwOptions.ReadOnly = true;
+            this.vwOptions.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.vwOptions.ShowEditingIcon = false;
+            this.vwOptions.Size = new System.Drawing.Size(279, 136);
+            this.vwOptions.TabIndex = 5;
+            // 
+            // id
+            // 
+            this.id.HeaderText = "id";
+            this.id.Name = "id";
+            this.id.ReadOnly = true;
+            this.id.Visible = false;
+            // 
+            // Option
+            // 
+            this.Option.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.Option.HeaderText = "Option";
+            this.Option.Name = "Option";
+            this.Option.ReadOnly = true;
+            // 
+            // Price
+            // 
+            dataGridViewCellStyle1.Format = "C2";
+            dataGridViewCellStyle1.NullValue = null;
+            this.Price.DefaultCellStyle = dataGridViewCellStyle1;
+            this.Price.HeaderText = "Price";
+            this.Price.Name = "Price";
+            this.Price.ReadOnly = true;
+            // 
             // label10
             // 
             this.label10.AutoSize = true;
@@ -412,50 +456,6 @@
             this.picSidePanel.TabIndex = 7;
             this.picSidePanel.TabStop = false;
             // 
-            // vwOptions
-            // 
-            this.vwOptions.AllowUserToAddRows = false;
-            this.vwOptions.AllowUserToDeleteRows = false;
-            this.vwOptions.BackgroundColor = System.Drawing.SystemColors.ControlLightLight;
-            this.vwOptions.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.vwOptions.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.None;
-            this.vwOptions.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.vwOptions.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.id,
-            this.Option,
-            this.Price});
-            this.vwOptions.Location = new System.Drawing.Point(304, 33);
-            this.vwOptions.MultiSelect = false;
-            this.vwOptions.Name = "vwOptions";
-            this.vwOptions.ReadOnly = true;
-            this.vwOptions.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.vwOptions.ShowEditingIcon = false;
-            this.vwOptions.Size = new System.Drawing.Size(279, 136);
-            this.vwOptions.TabIndex = 5;
-            // 
-            // id
-            // 
-            this.id.HeaderText = "id";
-            this.id.Name = "id";
-            this.id.ReadOnly = true;
-            this.id.Visible = false;
-            // 
-            // Option
-            // 
-            this.Option.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.Option.HeaderText = "Option";
-            this.Option.Name = "Option";
-            this.Option.ReadOnly = true;
-            // 
-            // Price
-            // 
-            dataGridViewCellStyle1.Format = "C2";
-            dataGridViewCellStyle1.NullValue = null;
-            this.Price.DefaultCellStyle = dataGridViewCellStyle1;
-            this.Price.HeaderText = "Price";
-            this.Price.Name = "Price";
-            this.Price.ReadOnly = true;
-            // 
             // OrdersForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -477,8 +477,8 @@
             this.grpCustomer.PerformLayout();
             this.grpProperty.ResumeLayout(false);
             this.grpProperty.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.picSidePanel)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.vwOptions)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picSidePanel)).EndInit();
             this.ResumeLayout(false);
 
         }

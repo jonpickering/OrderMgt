@@ -34,6 +34,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Moq, Version=4.2.1502.911, Culture=neutral, PublicKeyToken=69f491c39445e920, processorArchitecture=MSIL">
+      <HintPath>packages\Moq.4.2.1502.0911\lib\net40\Moq.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -47,7 +51,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AppHelper.cs" />
+    <Compile Include="BusinessObjects\BuildingDecorators\BuildingOptionDecorator.cs" />
     <Compile Include="BusinessObjects\BuildingFactory.cs" />
+    <Compile Include="BusinessObjects\BuildingDecorators\BuildingDecorator.cs" />
     <Compile Include="BusinessObjects\Buildings\FrameBase.cs" />
     <Compile Include="BusinessObjects\Buildings\FrameBoston.cs" />
     <Compile Include="BusinessObjects\Buildings\FrameOrchard.cs" />
@@ -92,11 +98,13 @@
     <Compile Include="Forms\UpdateOrderForm.Designer.cs">
       <DependentUpon>UpdateOrderForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Interfaces\IBuildingType.cs" />
+    <Compile Include="Interfaces\IBuilding.cs" />
     <Compile Include="Interfaces\INewOrderGui.cs" />
     <Compile Include="Interfaces\IOrder.cs" />
     <Compile Include="Interfaces\IOrderGui.cs" />
+    <Compile Include="Interfaces\IOrderSearchGui.cs" />
     <Compile Include="Interfaces\IUpdateOrderGui.cs" />
+    <Compile Include="Mocks\MockNewOrderForm.cs" />
     <Compile Include="Presenters\CustomerPresenter.cs" />
     <Compile Include="Forms\CustomerSearchForm.cs">
       <SubType>Form</SubType>
@@ -119,6 +127,7 @@
     <Compile Include="Interfaces\ICustomerGui.cs" />
     <Compile Include="Presenters\NewOrderPresenter.cs" />
     <Compile Include="Presenters\OrderPresenter.cs" />
+    <Compile Include="Presenters\OrderSearchPresenter.cs" />
     <Compile Include="Presenters\UpdateOrderPresenter.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -157,6 +166,7 @@
       <DesignTime>True</DesignTime>
     </Compile>
     <None Include="app.config" />
+    <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -176,6 +186,10 @@
   <ItemGroup>
     <None Include="Resources\People.png" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Images\neworder.png" />
+  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

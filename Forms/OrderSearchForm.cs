@@ -9,29 +9,42 @@ using System.Windows.Forms;
 
 namespace OrderMgt
 {
-    public partial class OrderSearchForm : Form
+    public partial class OrderSearchForm : Form, IOrderSearchGui
     {
-        private String _selectedOrderNumber;
+        private OrderSearchPresenter _presenter;
 
         public OrderSearchForm()
         {
             InitializeComponent();
         }
-
-        public String SelectedOrderNumber()
+        
+        public String OrderId
         {
-            return _selectedOrderNumber;
-        }
-
-        private void btnCancel_Click(object sender, EventArgs e)
-        {
-            this.Close();
+            set
+            {
+                txtOrderID.Text = value;
+            }
+            get
+            {
+                return txtOrderID.Text;
+            }
         }
 
         private void btnOK_Click(object sender, EventArgs e)
         {
-            _selectedOrderNumber = "4";
+            _presenter.getOrderToUpdate();
             this.Close();
         }
+
+        public void Register(OrderSearchPresenter presenter)
+        {
+            _presenter = presenter;
+        }
+
+        public void ShowMessage(String message)
+        {
+            MessageBox.Show(message);
+        }
+
     }
 }

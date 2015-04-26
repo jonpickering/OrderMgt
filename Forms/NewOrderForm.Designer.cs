@@ -28,8 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            this.picSidePanel = new System.Windows.Forms.PictureBox();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             this.tabWizzard = new System.Windows.Forms.TabControl();
             this.Customer = new System.Windows.Forms.TabPage();
             this.label2 = new System.Windows.Forms.Label();
@@ -60,6 +59,14 @@
             this.label9 = new System.Windows.Forms.Label();
             this.lblBuildingType = new System.Windows.Forms.Label();
             this.Options = new System.Windows.Forms.TabPage();
+            this.label15 = new System.Windows.Forms.Label();
+            this.txtSelectedOptionsPrice = new System.Windows.Forms.TextBox();
+            this.lblCostOfSelected = new System.Windows.Forms.Label();
+            this.vwBuildingOptions = new System.Windows.Forms.DataGridView();
+            this.id = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Option = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Price = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.type = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Confirm = new System.Windows.Forms.TabPage();
             this.label11 = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
@@ -75,33 +82,17 @@
             this.label1 = new System.Windows.Forms.Label();
             this.btnNext = new System.Windows.Forms.Button();
             this.btnBack = new System.Windows.Forms.Button();
-            this.vwBuildingOptions = new System.Windows.Forms.DataGridView();
-            this.id = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Option = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Price = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.lblCostOfSelected = new System.Windows.Forms.Label();
-            this.label15 = new System.Windows.Forms.Label();
-            this.txtSelectedOptionsPrice = new System.Windows.Forms.TextBox();
-            ((System.ComponentModel.ISupportInitialize)(this.picSidePanel)).BeginInit();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.picSidePanel = new System.Windows.Forms.PictureBox();
             this.tabWizzard.SuspendLayout();
             this.Customer.SuspendLayout();
             this.Building.SuspendLayout();
             this.Options.SuspendLayout();
-            this.Confirm.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.vwBuildingOptions)).BeginInit();
+            this.Confirm.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picSidePanel)).BeginInit();
             this.SuspendLayout();
-            // 
-            // picSidePanel
-            // 
-            this.picSidePanel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left)));
-            this.picSidePanel.BackColor = System.Drawing.Color.White;
-            this.picSidePanel.Location = new System.Drawing.Point(-2, -2);
-            this.picSidePanel.Name = "picSidePanel";
-            this.picSidePanel.Size = new System.Drawing.Size(143, 380);
-            this.picSidePanel.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.picSidePanel.TabIndex = 8;
-            this.picSidePanel.TabStop = false;
             // 
             // tabWizzard
             // 
@@ -289,6 +280,7 @@
             // 
             this.txtCustomerId.Location = new System.Drawing.Point(144, 47);
             this.txtCustomerId.Name = "txtCustomerId";
+            this.txtCustomerId.ReadOnly = true;
             this.txtCustomerId.Size = new System.Drawing.Size(100, 20);
             this.txtCustomerId.TabIndex = 1;
             this.txtCustomerId.TextChanged += new System.EventHandler(this.txtCustomerId_TextChanged);
@@ -369,7 +361,6 @@
             this.cboBuildingType.Name = "cboBuildingType";
             this.cboBuildingType.Size = new System.Drawing.Size(157, 21);
             this.cboBuildingType.TabIndex = 3;
-            this.cboBuildingType.SelectedIndexChanged += new System.EventHandler(this.cboBuildingType_SelectedIndexChanged);
             this.cboBuildingType.SelectedValueChanged += new System.EventHandler(this.cboBuildingType_SelectedValueChanged);
             // 
             // label9
@@ -403,6 +394,84 @@
             this.Options.TabIndex = 2;
             this.Options.Text = "Options";
             this.Options.UseVisualStyleBackColor = true;
+            // 
+            // label15
+            // 
+            this.label15.AutoSize = true;
+            this.label15.Location = new System.Drawing.Point(326, 199);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(13, 13);
+            this.label15.TabIndex = 18;
+            this.label15.Text = "£";
+            // 
+            // txtSelectedOptionsPrice
+            // 
+            this.txtSelectedOptionsPrice.Location = new System.Drawing.Point(345, 196);
+            this.txtSelectedOptionsPrice.Name = "txtSelectedOptionsPrice";
+            this.txtSelectedOptionsPrice.ReadOnly = true;
+            this.txtSelectedOptionsPrice.Size = new System.Drawing.Size(69, 20);
+            this.txtSelectedOptionsPrice.TabIndex = 17;
+            // 
+            // lblCostOfSelected
+            // 
+            this.lblCostOfSelected.AutoSize = true;
+            this.lblCostOfSelected.Location = new System.Drawing.Point(195, 199);
+            this.lblCostOfSelected.Name = "lblCostOfSelected";
+            this.lblCostOfSelected.Size = new System.Drawing.Size(125, 13);
+            this.lblCostOfSelected.TabIndex = 7;
+            this.lblCostOfSelected.Text = "Price For Selected Items:";
+            // 
+            // vwBuildingOptions
+            // 
+            this.vwBuildingOptions.AllowUserToAddRows = false;
+            this.vwBuildingOptions.AllowUserToDeleteRows = false;
+            this.vwBuildingOptions.BackgroundColor = System.Drawing.SystemColors.ControlLightLight;
+            this.vwBuildingOptions.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.None;
+            this.vwBuildingOptions.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.vwBuildingOptions.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.id,
+            this.Option,
+            this.Price,
+            this.type});
+            this.vwBuildingOptions.Location = new System.Drawing.Point(30, 29);
+            this.vwBuildingOptions.Name = "vwBuildingOptions";
+            this.vwBuildingOptions.ReadOnly = true;
+            this.vwBuildingOptions.RowHeadersVisible = false;
+            this.vwBuildingOptions.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.vwBuildingOptions.ShowEditingIcon = false;
+            this.vwBuildingOptions.Size = new System.Drawing.Size(384, 156);
+            this.vwBuildingOptions.TabIndex = 6;
+            this.vwBuildingOptions.SelectionChanged += new System.EventHandler(this.vwBuildingOptions_SelectionChanged);
+            // 
+            // id
+            // 
+            this.id.HeaderText = "id";
+            this.id.Name = "id";
+            this.id.ReadOnly = true;
+            this.id.Visible = false;
+            // 
+            // Option
+            // 
+            this.Option.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.Option.HeaderText = "Option";
+            this.Option.Name = "Option";
+            this.Option.ReadOnly = true;
+            // 
+            // Price
+            // 
+            dataGridViewCellStyle1.Format = "C2";
+            dataGridViewCellStyle1.NullValue = null;
+            this.Price.DefaultCellStyle = dataGridViewCellStyle1;
+            this.Price.HeaderText = "Price";
+            this.Price.Name = "Price";
+            this.Price.ReadOnly = true;
+            // 
+            // type
+            // 
+            this.type.HeaderText = "type";
+            this.type.Name = "type";
+            this.type.ReadOnly = true;
+            this.type.Visible = false;
             // 
             // Confirm
             // 
@@ -546,81 +615,34 @@
             this.btnBack.UseVisualStyleBackColor = true;
             this.btnBack.Click += new System.EventHandler(this.btnBack_Click);
             // 
-            // vwBuildingOptions
+            // pictureBox1
             // 
-            this.vwBuildingOptions.AllowUserToAddRows = false;
-            this.vwBuildingOptions.AllowUserToDeleteRows = false;
-            this.vwBuildingOptions.BackgroundColor = System.Drawing.SystemColors.ControlLightLight;
-            this.vwBuildingOptions.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.None;
-            this.vwBuildingOptions.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.vwBuildingOptions.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.id,
-            this.Option,
-            this.Price});
-            this.vwBuildingOptions.Location = new System.Drawing.Point(30, 29);
-            this.vwBuildingOptions.Name = "vwBuildingOptions";
-            this.vwBuildingOptions.ReadOnly = true;
-            this.vwBuildingOptions.RowHeadersVisible = false;
-            this.vwBuildingOptions.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.vwBuildingOptions.ShowEditingIcon = false;
-            this.vwBuildingOptions.Size = new System.Drawing.Size(384, 156);
-            this.vwBuildingOptions.TabIndex = 6;
-            this.vwBuildingOptions.SelectionChanged += new System.EventHandler(this.vwBuildingOptions_SelectionChanged);
+            this.pictureBox1.Image = global::OrderMgt.Properties.Resources.neworder;
+            this.pictureBox1.Location = new System.Drawing.Point(1, 10);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(135, 182);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
+            this.pictureBox1.TabIndex = 11;
+            this.pictureBox1.TabStop = false;
             // 
-            // id
+            // picSidePanel
             // 
-            this.id.HeaderText = "id";
-            this.id.Name = "id";
-            this.id.ReadOnly = true;
-            this.id.Visible = false;
-            // 
-            // Option
-            // 
-            this.Option.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.Option.HeaderText = "Option";
-            this.Option.Name = "Option";
-            this.Option.ReadOnly = true;
-            // 
-            // Price
-            // 
-            dataGridViewCellStyle3.Format = "C2";
-            dataGridViewCellStyle3.NullValue = null;
-            this.Price.DefaultCellStyle = dataGridViewCellStyle3;
-            this.Price.HeaderText = "Price";
-            this.Price.Name = "Price";
-            this.Price.ReadOnly = true;
-            // 
-            // lblCostOfSelected
-            // 
-            this.lblCostOfSelected.AutoSize = true;
-            this.lblCostOfSelected.Location = new System.Drawing.Point(195, 199);
-            this.lblCostOfSelected.Name = "lblCostOfSelected";
-            this.lblCostOfSelected.Size = new System.Drawing.Size(125, 13);
-            this.lblCostOfSelected.TabIndex = 7;
-            this.lblCostOfSelected.Text = "Price For Selected Items:";
-            // 
-            // label15
-            // 
-            this.label15.AutoSize = true;
-            this.label15.Location = new System.Drawing.Point(326, 199);
-            this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(13, 13);
-            this.label15.TabIndex = 18;
-            this.label15.Text = "£";
-            // 
-            // txtSelectedOptionsPrice
-            // 
-            this.txtSelectedOptionsPrice.Location = new System.Drawing.Point(345, 196);
-            this.txtSelectedOptionsPrice.Name = "txtSelectedOptionsPrice";
-            this.txtSelectedOptionsPrice.ReadOnly = true;
-            this.txtSelectedOptionsPrice.Size = new System.Drawing.Size(69, 20);
-            this.txtSelectedOptionsPrice.TabIndex = 17;
+            this.picSidePanel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
+            this.picSidePanel.BackColor = System.Drawing.Color.White;
+            this.picSidePanel.Location = new System.Drawing.Point(-2, -2);
+            this.picSidePanel.Name = "picSidePanel";
+            this.picSidePanel.Size = new System.Drawing.Size(143, 380);
+            this.picSidePanel.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.picSidePanel.TabIndex = 8;
+            this.picSidePanel.TabStop = false;
             // 
             // NewOrderForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(606, 375);
+            this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.btnBack);
             this.Controls.Add(this.btnNext);
             this.Controls.Add(this.tabWizzard);
@@ -629,7 +651,6 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "New Order Form";
             this.Load += new System.EventHandler(this.NewOrderForm_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.picSidePanel)).EndInit();
             this.tabWizzard.ResumeLayout(false);
             this.Customer.ResumeLayout(false);
             this.Customer.PerformLayout();
@@ -637,10 +658,13 @@
             this.Building.PerformLayout();
             this.Options.ResumeLayout(false);
             this.Options.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.vwBuildingOptions)).EndInit();
             this.Confirm.ResumeLayout(false);
             this.Confirm.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.vwBuildingOptions)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picSidePanel)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -693,11 +717,13 @@
         private System.Windows.Forms.Label lblVat;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.DataGridView vwBuildingOptions;
-        private System.Windows.Forms.DataGridViewTextBoxColumn id;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Option;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Price;
         private System.Windows.Forms.Label label15;
         private System.Windows.Forms.TextBox txtSelectedOptionsPrice;
         private System.Windows.Forms.Label lblCostOfSelected;
+        private System.Windows.Forms.DataGridViewTextBoxColumn id;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Option;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Price;
+        private System.Windows.Forms.DataGridViewTextBoxColumn type;
+        private System.Windows.Forms.PictureBox pictureBox1;
     }
 }
